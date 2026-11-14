@@ -3,7 +3,7 @@ on:
   pull_request:
     paths: ['backend/**', 'docs/**', '.gitattributes', '.github/workflows/celestial-engine.yml']
   push:
-    branches: ['feature/celestial-engine', 'feature/global-lunar-fusion-v1']
+    branches: ['feature/celestial-engine', 'feature/global-lunar-fusion-v1', 'feature/wispr-final-backend']
     paths: ['backend/**', 'docs/**', '.gitattributes', '.github/workflows/celestial-engine.yml']
 jobs:
   offline:
