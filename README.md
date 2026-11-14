@@ -1,5 +1,7 @@
 # WISPR — lunar visibility and schedule recovery
 
+The global lunar extension is documented in [GLOBAL_API_HANDOFF.md](docs/GLOBAL_API_HANDOFF.md), with actual source coverage and limitations in [GLOBAL_DATA_PROVENANCE.md](docs/GLOBAL_DATA_PROVENANCE.md) and executed verification in [GLOBAL_VALIDATION_REPORT.md](docs/GLOBAL_VALIDATION_REPORT.md).
+
 Compare Sun and direct-to-Earth visibility at two lunar reference regions before and after a seven-day delay. Results are sampled geometric estimates, not landing certification, electrical power, radio link budgets or spacecraft commands.
 
 ## Run locally (PowerShell)
@@ -41,3 +43,7 @@ Terrain requires real local GeoTIFFs and explicit vertical-reference metadata. S
 See `docs/IMPLEMENTATION_PLAN.md`, `docs/STATUS.md`, and the supplied frozen `docs/contracts/API_V1.md` for scope, evidence and limitations.
 
 `backend/uv.lock` and `frontend/package-lock.json` record resolved dependencies. With uv installed, `uv sync --project backend --extra test --extra terrain --locked` reproduces the backend environment. `npm ci` reproduces the frontend install.
+
+The integrated scientific grid/vector/scenario backend is documented in [UNIFIED_ANALYSIS_HANDOFF.md](docs/UNIFIED_ANALYSIS_HANDOFF.md), including real V3/NASA validation, API usage and the V4 ingestion contract.
+
+Frontend integration and final stabilization evidence: [FRONTEND_INTEGRATION_HANDOFF.md](docs/FRONTEND_INTEGRATION_HANDOFF.md) and [SCIENTIFIC_BACKEND_VERIFICATION.md](docs/SCIENTIFIC_BACKEND_VERIFICATION.md).

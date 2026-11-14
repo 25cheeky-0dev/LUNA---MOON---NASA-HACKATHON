@@ -8,6 +8,8 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, Response
 from celestial_engine.api import router as celestial_router
+from app.integration.api import router as science_router
+from lunar_global.api import router as global_router
 from app.catalog import SITES, SITE_WARNING
 from app.metadata import metadata, aggregate
 from app.schemas import (RecoveryRequest, RecoveryResponse, AnalyzeRequest, EphemerisRequest,
@@ -24,6 +26,8 @@ app = FastAPI(title='WISPR lunar visibility', version='0.1.0', description='Samp
 app.add_middleware(CORSMiddleware, allow_origins=os.getenv('CORS_ORIGINS','http://localhost:5173,http://127.0.0.1:5173').split(','),
     allow_methods=['GET','POST'],allow_headers=['Content-Type'])
 app.include_router(celestial_router)
+app.include_router(science_router)
+app.include_router(global_router)
 provider = Horizons()
 scenarios = OrderedDict()
 requests_gate = asyncio.Semaphore(2)
@@ -34,6 +38,17 @@ def remember(scenario):
     scenarios.move_to_end(scenario['scenario_id'])
     while len(scenarios)>128:
         scenarios.popitem(last=False)
+
+
+@app.exception_handler(HTTPException)
+async def http_error(request, exc):
+    if request.url.path.startswith('/api/v1/science/'):
+        codes = {404: 'NOT_FOUND', 422: 'INVALID_SCIENTIFIC_REQUEST', 429: 'CAPACITY_EXCEEDED'}
+        return JSONResponse(status_code=exc.status_code, headers=exc.headers,
+            content=dict(error_code=codes.get(exc.status_code, 'HTTP_ERROR'),
+                         detail=exc.detail, missing_fields=[]))
+    from fastapi.exception_handlers import http_exception_handler
+    return await http_exception_handler(request, exc)
 
 
 @app.exception_handler(RequestValidationError)

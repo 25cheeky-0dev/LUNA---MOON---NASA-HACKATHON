@@ -15,7 +15,7 @@ class TerrainUnavailable(Exception):
     pass
 
 
-def load(site_id):
+def load(site_id, position=None):
     path = os.getenv('DEM_'+site_id)
     if not path:
         raise TerrainUnavailable('No source-documented local DEM configured')
@@ -40,8 +40,8 @@ def load(site_id):
         if abs(raster.transform.b) > 1e-9 or abs(raster.transform.d) > 1e-9:
             raise ValueError('Rotated raster needs explicit resampling')
         transformer = Transformer.from_crs(crs.geodetic_crs, crs, always_xy=True)
-        site = SITES[site_id]
-        x, y = transformer.transform(site['lon_east_deg'], site['lat_deg'])
+        lat, lon = position if position is not None else (SITES[site_id]['lat_deg'], SITES[site_id]['lon_east_deg'])
+        x, y = transformer.transform(lon, lat)
         if not (raster.bounds.left <= x < raster.bounds.right and raster.bounds.bottom < y <= raster.bounds.top):
             raise ValueError('OUTSIDE_DEM_FOOTPRINT')
         return raster, manifest, x, y, digest
@@ -91,10 +91,10 @@ def curvature_angle(distance_m, delta_height_m):
     return math.degrees(math.atan2((RADIUS+delta_height_m)*math.cos(theta)-RADIUS, (RADIUS+delta_height_m)*math.sin(theta)))
 
 
-def horizon(site_id, observer_height_m, az_step_deg):
+def horizon(site_id, observer_height_m, az_step_deg, *, position=None):
     import numpy as np
     from pyproj import Geod, CRS, Transformer
-    raster, manifest, x, y, digest = load(site_id)
+    raster, manifest, x, y, digest = load(site_id, position=position)
     with raster:
         origin = next(raster.sample([(x,y)], masked=True))[0]
         if np.ma.is_masked(origin) or not np.isfinite(origin):
@@ -102,14 +102,14 @@ def horizon(site_id, observer_height_m, az_step_deg):
         crs = CRS.from_user_input(raster.crs)
         transformer = Transformer.from_crs(crs.geodetic_crs, crs, always_xy=True)
         geod = Geod(a=RADIUS,b=RADIUS)
-        site = SITES[site_id]
+        latitude, longitude = position if position is not None else (SITES[site_id]['lat_deg'], SITES[site_id]['lon_east_deg'])
         spacing = max(10., max(raster.res))
         max_radius = min(20000., math.hypot(raster.bounds.right-raster.bounds.left, raster.bounds.top-raster.bounds.bottom))
         distances = np.arange(spacing,max_radius,spacing)
         samples = []
         radii = []
         for az in range(0,360,az_step_deg):
-            lon, lat, _ = geod.fwd(np.full(len(distances),site['lon_east_deg']), np.full(len(distances),site['lat_deg']), np.full(len(distances),az), distances)
+            lon, lat, _ = geod.fwd(np.full(len(distances),longitude), np.full(len(distances),latitude), np.full(len(distances),az), distances)
             xs, ys = transformer.transform(lon,lat)
             vals = list(raster.sample(zip(xs,ys), masked=True))
             angles, supported = [], 0.
@@ -121,7 +121,7 @@ def horizon(site_id, observer_height_m, az_step_deg):
             radii.append(supported)
             samples.append(dict(azimuth_deg=az, terrain_horizon_elevation_deg=max(angles) if angles else None,
                 coverage='PARTIAL' if angles else 'UNKNOWN', uncertainty_deg=None, supported_radius_m=supported))
-        return dict(azimuth_samples=samples, max_supported_radius_m=max(radii,default=0), far_field_complete=False,
+        return dict(observation_position=dict(latitude_deg=latitude, longitude_east_deg=longitude), source_manifest=manifest, raster_sha256=digest, azimuth_samples=samples, max_supported_radius_m=max(radii,default=0), far_field_complete=False,
             observer_ground_height_m=float(origin), observer_height_m=observer_height_m,
             **metadata('NASA_LOLA_DEM','TERRAIN_PARTIAL','PARTIAL',limitations=[
                 'Finite local DEM cannot certify clear far-field sectors. No terrain-mode eligibility is inferred.',
