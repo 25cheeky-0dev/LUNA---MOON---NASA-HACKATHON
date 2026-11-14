@@ -4846,7 +4846,7 @@
                 }
               }
             },
-            "description": "Unprocessable Content"
+            "description": "Invalid scientific or schema request"
           },
           "429": {
             "content": {
@@ -4856,7 +4856,7 @@
                 }
               }
             },
-            "description": "Too Many Requests"
+            "description": "Analysis capacity exceeded"
           }
         },
         "summary": "Analysis",
@@ -4907,7 +4907,7 @@
                 }
               }
             },
-            "description": "Unprocessable Content"
+            "description": "Invalid scientific or schema request"
           },
           "429": {
             "content": {
@@ -4917,7 +4917,7 @@
                 }
               }
             },
-            "description": "Too Many Requests"
+            "description": "Analysis capacity exceeded"
           }
         },
         "summary": "Celestial",
@@ -4983,7 +4983,7 @@
                 }
               }
             },
-            "description": "Unprocessable Content"
+            "description": "Invalid scientific or schema request"
           },
           "429": {
             "content": {
@@ -4993,7 +4993,7 @@
                 }
               }
             },
-            "description": "Too Many Requests"
+            "description": "Analysis capacity exceeded"
           }
         },
         "summary": "Datasets",
@@ -5055,7 +5055,7 @@
                 }
               }
             },
-            "description": "Unprocessable Content"
+            "description": "Invalid scientific or schema request"
           },
           "429": {
             "content": {
@@ -5065,7 +5065,7 @@
                 }
               }
             },
-            "description": "Too Many Requests"
+            "description": "Analysis capacity exceeded"
           }
         },
         "summary": "Candidates",
@@ -5140,7 +5140,7 @@
                 }
               }
             },
-            "description": "Unprocessable Content"
+            "description": "Invalid scientific or schema request"
           },
           "429": {
             "content": {
@@ -5150,7 +5150,7 @@
                 }
               }
             },
-            "description": "Too Many Requests"
+            "description": "Analysis capacity exceeded"
           }
         },
         "summary": "Cells",
@@ -5211,7 +5211,7 @@
                 }
               }
             },
-            "description": "Unprocessable Content"
+            "description": "Invalid scientific or schema request"
           },
           "429": {
             "content": {
@@ -5221,7 +5221,7 @@
                 }
               }
             },
-            "description": "Too Many Requests"
+            "description": "Analysis capacity exceeded"
           }
         },
         "summary": "Cell",
@@ -5294,7 +5294,7 @@
                 }
               }
             },
-            "description": "Unprocessable Content"
+            "description": "Invalid scientific or schema request"
           },
           "429": {
             "content": {
@@ -5304,7 +5304,7 @@
                 }
               }
             },
-            "description": "Too Many Requests"
+            "description": "Analysis capacity exceeded"
           }
         },
         "summary": "Similarity",
@@ -5365,7 +5365,7 @@
                 }
               }
             },
-            "description": "Unprocessable Content"
+            "description": "Invalid scientific or schema request"
           },
           "429": {
             "content": {
@@ -5375,7 +5375,7 @@
                 }
               }
             },
-            "description": "Too Many Requests"
+            "description": "Analysis capacity exceeded"
           }
         },
         "summary": "Vector",
@@ -5426,7 +5426,7 @@
                 }
               }
             },
-            "description": "Unprocessable Content"
+            "description": "Invalid scientific or schema request"
           },
           "429": {
             "content": {
@@ -5436,7 +5436,7 @@
                 }
               }
             },
-            "description": "Too Many Requests"
+            "description": "Analysis capacity exceeded"
           }
         },
         "summary": "Delay",
@@ -5487,7 +5487,7 @@
                 }
               }
             },
-            "description": "Unprocessable Content"
+            "description": "Invalid scientific or schema request"
           },
           "429": {
             "content": {
@@ -5497,7 +5497,7 @@
                 }
               }
             },
-            "description": "Too Many Requests"
+            "description": "Analysis capacity exceeded"
           }
         },
         "summary": "Ranking",
@@ -5549,7 +5549,7 @@
                 }
               }
             },
-            "description": "Unprocessable Content"
+            "description": "Invalid scientific or schema request"
           },
           "429": {
             "content": {
@@ -5559,7 +5559,7 @@
                 }
               }
             },
-            "description": "Too Many Requests"
+            "description": "Analysis capacity exceeded"
           }
         },
         "summary": "Dynamic Vectors",

@@ -17,7 +17,14 @@ from .grid import Filters, Registry
 router = APIRouter(
     prefix="/api/v1/science",
     tags=["unified-science"],
-    responses={code: {"model": contract.ScienceError} for code in (404, 422, 429)},
+    responses={
+        code: {"model": contract.ScienceError, "description": description}
+        for code, description in (
+            (404, "Not Found"),
+            (422, "Invalid scientific or schema request"),
+            (429, "Analysis capacity exceeded"),
+        )
+    },
 )
 _gate = threading.BoundedSemaphore(2)
 _lock = threading.Lock()

@@ -83,3 +83,7 @@ uv run --no-sync python -m scripts.verify_science_http
 ```
 
 The path is a documentation example only. For CI-style offline execution, unset the live/asset variables and run `uv run --no-sync python -m pytest -q -m 'not live'`. Obtain the checked-out final release SHA with `git rev-parse HEAD`; the final delivery also reports the pushed commit and its CI run.
+
+### Cross-version schema stabilization
+
+The expanded workflow exposed a Python 3.12/3.13 difference in the standard library's HTTP 422 reason phrase (`Unprocessable Content` versus `Unprocessable Entity`). Scientific tests passed; only the exact OpenAPI snapshot failed on 3.12. Science error response descriptions are now explicitly defined in the router, so the served and exported schema is identical across versions. The snapshot assertion was retained, not loosened.
