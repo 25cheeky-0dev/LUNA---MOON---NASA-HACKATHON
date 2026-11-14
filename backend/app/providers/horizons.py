@@ -7,11 +7,10 @@ import math
 import os
 from pathlib import Path
 import re
-import ssl
 import tempfile
 
 import httpx
-import truststore
+from celestial_engine.horizons_client import legacy_get
 from app.catalog import SITES
 from app.metadata import iso, metadata
 from app.science.grid import lookup
@@ -118,10 +117,7 @@ class Horizons:
             raise SourceUnavailable('No verified cache for these exact coordinates, interval and sampling settings')
         try:
             async with self.gate:
-                context = truststore.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
-                async with httpx.AsyncClient(timeout=35, verify=context) as client:
-                    response = await client.get(URL, params=params)
-                    response.raise_for_status()
+                response = await asyncio.to_thread(legacy_get, params)
             raw = response.content
             records = parse_response(raw, target, site)
             meta = dict(params=params, parser_version=PARSER_VERSION, raw_sha256=hashlib.sha256(raw).hexdigest(),
