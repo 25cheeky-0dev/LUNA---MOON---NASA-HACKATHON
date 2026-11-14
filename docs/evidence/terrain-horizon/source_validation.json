@@ -1,0 +1,69 @@
+{
+  "source_provenance": {
+    "source_url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site04/Site04_final_adj_5mpp_surf.tif",
+    "source_vertical_reference": "DEM height Z in metres as defined by NASA PGDA; verify JPL Horizons compatibility before using observer elevation",
+    "source_frame": "MOON_ME / DE421",
+    "package_manifest_sha256": "694911f0b0caae7b6071b525d229f3ea7a88592fa38d39c9d8d195701ab36efe",
+    "verified_files": {
+      "baseline/grid_metadata.json": "e2dd99b19aa03acd5c26f19791332b3191e274932ea454cf44accbdaeb1670b6",
+      "Site04_final_adj_5mpp_surf.tif": "38ff70dbdf2f066c2cfa94a646c3a59d653ce7f6b4528b15fc1b43ee397ce758",
+      "tile_manifest.json": "51e1437f06155f128923f51386fc45588342bce395c256c7b44ad5ca1423ba42",
+      "baseline/grid.parquet": "dc32b04162bd3db3e114ba816a1958f1ef918d7f38effa7eaee992ca32fa45e4",
+      "baseline/neighbors.parquet": "952c3be5e22f1fefa9066f9354555d1935a73e58d0621bcde0e02d3ae27110e5",
+      "baseline/grid_geometry.parquet": "2de40301a6f4cddbf572f57060c3b6637a03f681a6d084ed540ee29930dcf8b0",
+      "tiles/SITE04_TILE_R00_C00/tile_metadata.json": "ba07187468f3d712507c974d1650a09e01508d6904c3bc1063e74a370efd0d8d",
+      "tiles/SITE04_TILE_R00_C00/cells.jsonl": "d075004423fc646cf3e20edc9a4fad3e553702ab908554c014a6d1630d5de646",
+      "tiles/SITE04_TILE_R00_C01/tile_metadata.json": "982bbdb87ad68624d5a33411b7451a371ebbc01c411d482d7affbd4468ebb7b8",
+      "tiles/SITE04_TILE_R00_C01/cells.jsonl": "bf91d7a1bd7bfacec004d777a4d4fc32e4dd11d245853b2f339caf8e2a49253c",
+      "tiles/SITE04_TILE_R01_C00/tile_metadata.json": "767613394aca7d88ab7e6199feafb8642f620484c9afccb56c44d2b9cb6aba96",
+      "tiles/SITE04_TILE_R01_C00/cells.jsonl": "6010b75c0447dca003a1ca0025481e4505a23e38a2697402c8db2444c296f225",
+      "tiles/SITE04_TILE_R01_C01/tile_metadata.json": "249a93dbbe20bba3b20927635c92633501e9d0887384e3271ebf48ccb0547445",
+      "tiles/SITE04_TILE_R01_C01/cells.jsonl": "8cf6bc6b876e0883378658e1aeb68dcca28a1adaba99bd25b5e15d23c81120cd"
+    },
+    "dataset_id": "SITE04_NW_ORIGIN_PRESERVED_2KM_100M__tiles_3.0.0",
+    "raw_sha256": "38ff70dbdf2f066c2cfa94a646c3a59d653ce7f6b4528b15fc1b43ee397ce758",
+    "checksum_verified": true,
+    "source_filename": "Site04_final_adj_5mpp_surf.tif"
+  },
+  "raster": {
+    "width": 3200,
+    "height": 3200,
+    "crs_wkt": "PROJCRS[\"unnamed\",BASEGEOGCRS[\"unnamed ellipse\",DATUM[\"unknown\",ELLIPSOID[\"unnamed\",1737400,0,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]]],PRIMEM[\"Greenwich\",0,ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9122]]]],CONVERSION[\"unnamed\",METHOD[\"Polar Stereographic (variant B)\",ID[\"EPSG\",9829]],PARAMETER[\"Latitude of standard parallel\",-90,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8832]],PARAMETER[\"Longitude of origin\",0,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8833]],PARAMETER[\"False easting\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8806]],PARAMETER[\"False northing\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8807]]],CS[Cartesian,2],AXIS[\"easting\",north,ORDER[1],LENGTHUNIT[\"metre\",1]],AXIS[\"northing\",north,ORDER[2],LENGTHUNIT[\"metre\",1]]]",
+    "affine": [
+      5.0,
+      0.0,
+      -9000.0,
+      0.0,
+      -5.0,
+      1000.0
+    ],
+    "bounds_m": [
+      -9000.0,
+      -15000.0,
+      7000.0,
+      1000.0
+    ],
+    "pixel_size_m": [
+      5.0,
+      5.0
+    ],
+    "dtype": "float32",
+    "nodata": "nan",
+    "valid_pixels": 10240000,
+    "invalid_pixels": 0,
+    "elevation_min_m": -2847.877197265625,
+    "elevation_max_m": 1805.0726318359375,
+    "elevation_mean_m": 245.34379158594027
+  },
+  "manifest_sha256": "694911f0b0caae7b6071b525d229f3ea7a88592fa38d39c9d8d195701ab36efe",
+  "manifest_expected_dem_sha256": "38ff70dbdf2f066c2cfa94a646c3a59d653ce7f6b4528b15fc1b43ee397ce758",
+  "actual_dem_sha256": "38ff70dbdf2f066c2cfa94a646c3a59d653ce7f6b4528b15fc1b43ee397ce758",
+  "matched": true,
+  "load_seconds": 1.5552377999993041,
+  "versions": {
+    "python": "3.12.16",
+    "numpy": "2.5.4",
+    "rasterio": "1.5.2",
+    "pyproj": "3.8.0"
+  }
+}

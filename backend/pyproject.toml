@@ -13,6 +13,7 @@ celestial = ["pyarrow>=18,<27"]
 lint = ["ruff>=0.11,<1"]
 test = ["pytest>=8,<10"]
 terrain = ["rasterio>=1.4,<2", "pyproj>=3.7,<4", "numpy>=2,<3"]
+terrain-validation = ["matplotlib>=3.9,<4"]
 
 [tool.setuptools.packages.find]
 include = ["app*", "celestial_engine*"]
