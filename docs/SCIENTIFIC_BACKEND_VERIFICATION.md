@@ -87,3 +87,18 @@ The path is a documentation example only. For CI-style offline execution, unset 
 ### Cross-version schema stabilization
 
 The expanded workflow exposed a Python 3.12/3.13 difference in the standard library's HTTP 422 reason phrase (`Unprocessable Content` versus `Unprocessable Entity`). Scientific tests passed; only the exact OpenAPI snapshot failed on 3.12. Science error response descriptions are now explicitly defined in the router, so the served and exported schema is identical across versions. The snapshot assertion was retained, not loosened.
+
+## Final code checkpoint
+
+Implementation commit: **`3e26bb057c678481be6045a7c59bbaea9c14c48d`** on `feature/unified-scientific-analysis`.
+
+[Final implementation workflow 43601758863](https://github.com/25cheeky-0dev/LUNA---MOON---NASA-HACKATHON/actions/runs/43601758863):
+
+| Python | CI result | Exact pytest result |
+|---|---|---|
+| 3.12 | SUCCESS | 172 passed, 1 skipped, 2 deselected, 1 warning |
+| 3.13 | SUCCESS | 172 passed, 1 skipped, 2 deselected, 1 warning |
+
+Both jobs passed locked sync, lint, formatting, the entire offline regression suite and exact generated-contract validation. The single skip is the unavailable external full V3 package on CI; the two deselections are the explicitly live NASA tests. Local full validation with those dependencies enabled was 175 passed.
+
+No backend integration blocker remains for the documented scope. The unverified terrain vertical reference, incomplete horizons, missing uncertainty layers and bounded process-local storage remain explicit limitations. PR #2 is ready for review and an approved sequential merge; no merge was performed. A subsequent documentation-only commit records this checkpoint; its SHA is available in Git/PR history and the final delivery.
