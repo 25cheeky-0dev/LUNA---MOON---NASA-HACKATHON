@@ -54,7 +54,8 @@ def horizon_at(dataset, cell, request):
         )
         manifest = result.get("source_manifest", {})
         compatible = (
-            manifest.get("vertical_reference") == "horizons_lunar_reference"
+            result.get("vertical_reference_verified") is True
+            and manifest.get("vertical_reference") == "horizons_lunar_reference"
             and abs(
                 (result["observer_ground_height_m"] + request.observer_height_m) / 1000
                 - request.altitude_km

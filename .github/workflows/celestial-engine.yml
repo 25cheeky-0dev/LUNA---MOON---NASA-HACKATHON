@@ -3,8 +3,13 @@ on:
   pull_request:
     paths: ['backend/**', 'docs/**', '.gitattributes', '.github/workflows/celestial-engine.yml']
   push:
+<<<<<<< HEAD
     branches: ['feature/celestial-engine', 'feature/global-lunar-fusion-v1']
     paths: ['backend/**', 'docs/**', '.gitattributes', '.github/workflows/celestial-engine.yml']
+=======
+    branches: ['feature/celestial-engine', 'feature/terrain-horizon-engine']
+    paths: ['backend/**', '.gitattributes', '.github/workflows/celestial-engine.yml']
+>>>>>>> origin/feature/terrain-horizon-engine
 jobs:
   offline:
     runs-on: ubuntu-latest
@@ -18,10 +23,16 @@ jobs:
         with:
           python-version: '${{ matrix.python }}'
       - run: python -m pip install uv
+<<<<<<< HEAD
       - run: uv sync --project backend --locked --extra celestial --extra test --extra lint --extra global --extra terrain
       - run: uv run --project backend --no-sync ruff check backend/lunar_global backend/scripts/build_global.py
       - run: uv run --project backend --no-sync ruff check backend/celestial_engine backend/app/integration backend/scripts/export_science_contract.py backend/scripts/verify_science_http.py backend/tests/test_science_contract.py
       - run: uv run --project backend --no-sync ruff format --check backend/celestial_engine backend/app/integration backend/scripts/export_science_contract.py backend/scripts/verify_science_http.py backend/tests/test_science_contract.py
+=======
+      - run: uv sync --project backend --locked --extra celestial --extra test --extra lint --extra terrain
+      - run: uv run --project backend --no-sync ruff check backend/celestial_engine
+      - run: uv run --project backend --no-sync ruff format --check backend/celestial_engine
+>>>>>>> origin/feature/terrain-horizon-engine
       - run: uv run --no-sync python -m pytest -q -m 'not live'
         working-directory: backend
       - run: uv run --no-sync python -m scripts.export_science_contract --check

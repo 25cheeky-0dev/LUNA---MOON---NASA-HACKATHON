@@ -1,0 +1,66 @@
+{
+  "cells": [
+    {
+      "cell_id": "SITE04_R000_C000",
+      "original_center": {
+        "latitude_deg": -89.7787655990766,
+        "longitude_east_deg": 192.48248938495448,
+        "x_m": -1450.0,
+        "y_m": -6550.0
+      },
+      "observer_ground_height_m": 1072.2474060061754,
+      "skyline_min_deg": -24.631510275998803,
+      "skyline_max_deg": 32.10620779965433,
+      "supported_radius_min_m": 7547.5,
+      "supported_radius_max_m": 11845.0,
+      "compute_seconds": 6.467657199998939,
+      "cache_seconds": 0.014173899999150308,
+      "sample_step_m": 2.5,
+      "refinement_step_m": 1.25,
+      "refinement_max_increase_deg": 0.05605524001409634,
+      "refinement_max_absolute_difference_deg": 0.05605524001409634,
+      "refinement_rms_difference_deg": 0.006912473965467484,
+      "refinement_is_error_bound": false,
+      "vertical_reference_verified": false,
+      "visibility": "UNKNOWN",
+      "nasa_delivery": "VERIFIED_RECORDED_CACHE",
+      "compatibility_failures": [
+        "DEM_VERTICAL_REFERENCE_UNVERIFIED",
+        "OBSERVER_POSITION_OR_ALTITUDE_MISMATCH"
+      ]
+    },
+    {
+      "cell_id": "SITE04_R000_C001",
+      "original_center": {
+        "latitude_deg": -89.779454879477,
+        "longitude_east_deg": 191.6459742484832,
+        "x_m": -1350.0,
+        "y_m": -6550.0
+      },
+      "observer_ground_height_m": 1008.3356475844004,
+      "skyline_min_deg": -24.52922233797943,
+      "skyline_max_deg": 38.27291158394136,
+      "supported_radius_min_m": 7547.5,
+      "supported_radius_max_m": 11812.5,
+      "compute_seconds": 7.205688799998825,
+      "cache_seconds": 0.015292000000044936,
+      "sample_step_m": 2.5,
+      "refinement_step_m": 1.25,
+      "refinement_max_increase_deg": 0.7246286877383312,
+      "refinement_max_absolute_difference_deg": 0.7246286877383312,
+      "refinement_rms_difference_deg": 0.08447132044635271,
+      "refinement_is_error_bound": false,
+      "vertical_reference_verified": false,
+      "visibility": "UNKNOWN",
+      "nasa_delivery": "VERIFIED_RECORDED_CACHE",
+      "compatibility_failures": [
+        "DEM_VERTICAL_REFERENCE_UNVERIFIED",
+        "OBSERVER_POSITION_OR_ALTITUDE_MISMATCH"
+      ]
+    }
+  ],
+  "angular_step_deg": 1,
+  "far_field_complete": false,
+  "vertical_reference_verified": false,
+  "only_requested_cells_computed": true
+}

@@ -1,0 +1,726 @@
+{
+  "cell_id": "SITE04_R000_C001",
+  "model": "TERRAIN_PARTIAL",
+  "far_field_complete": false,
+  "records": [
+    {
+      "source_observation": {
+        "timestamp_utc": "2026-11-15T00:00:00Z",
+        "sun_azimuth_deg": 282.779394629,
+        "sun_elevation_deg": 1.605149106,
+        "earth_azimuth_deg": 165.73073342,
+        "earth_elevation_deg": -3.766554139,
+        "latitude_deg": -89.779454879477,
+        "longitude_east_deg": 191.6459742484832,
+        "altitude_km": 0.0,
+        "source": "NASA_JPL_HORIZONS",
+        "valid": true,
+        "quality": "SOURCE_BACKED"
+      },
+      "terrain": {
+        "sun": {
+          "state": "UNKNOWN",
+          "observer_reference_compatible": false,
+          "reasons": [
+            "DEM_VERTICAL_REFERENCE_UNVERIFIED",
+            "OBSERVER_POSITION_OR_ALTITUDE_MISMATCH",
+            "TERRAIN_ERROR_BOUND_UNRESOLVED"
+          ],
+          "ray": {
+            "azimuth_deg": 282.779394629,
+            "terrain_horizon_elevation_deg": -20.00885368939782,
+            "obstruction_distance_m": 9167.5,
+            "obstruction": {
+              "distance_m": 9167.5,
+              "source_x_m": 6997.093243287278,
+              "source_y_m": -10340.816804220933,
+              "latitude_deg": -89.58825096462938,
+              "longitude_east_deg": 145.91583070793962,
+              "source_elevation_m": -2300.3759899161946,
+              "radius_m": 1735099.6240100837
+            },
+            "supported_radius_m": 9167.5,
+            "supported_sample_count": 3667,
+            "supported_sample_interval_m": [
+              2.5,
+              9167.5
+            ],
+            "first_unknown_distance_m": 9170.0,
+            "stop_reason": "SOURCE_BOUNDARY",
+            "coverage": "PARTIAL",
+            "near_field_complete": false,
+            "far_field_complete": false,
+            "resolution_verified": false,
+            "uncertainty_deg": null,
+            "verified_obstruction_lower_bound_deg": null,
+            "sampling_step_m": 2.5,
+            "angular_interpolation": false
+          },
+          "target_treatment": "CENTER_ONLY"
+        },
+        "earth": {
+          "state": "UNKNOWN",
+          "observer_reference_compatible": false,
+          "reasons": [
+            "DEM_VERTICAL_REFERENCE_UNVERIFIED",
+            "OBSERVER_POSITION_OR_ALTITUDE_MISMATCH",
+            "TERRAIN_ERROR_BOUND_UNRESOLVED"
+          ],
+          "ray": {
+            "azimuth_deg": 165.73073342,
+            "terrain_horizon_elevation_deg": 6.8628767909256565,
+            "obstruction_distance_m": 3795.0,
+            "obstruction": {
+              "distance_m": 3795.0,
+              "source_x_m": -1523.6921053069461,
+              "source_y_m": -2758.9690686513377,
+              "latitude_deg": -89.89606187155616,
+              "longitude_east_deg": 208.91049368301185,
+              "source_elevation_m": 1470.6208966960144,
+              "radius_m": 1738870.620896696
+            },
+            "supported_radius_m": 7555.0,
+            "supported_sample_count": 3022,
+            "supported_sample_interval_m": [
+              2.5,
+              7555.0
+            ],
+            "first_unknown_distance_m": 7557.5,
+            "stop_reason": "SOURCE_BOUNDARY",
+            "coverage": "PARTIAL",
+            "near_field_complete": false,
+            "far_field_complete": false,
+            "resolution_verified": false,
+            "uncertainty_deg": null,
+            "verified_obstruction_lower_bound_deg": null,
+            "sampling_step_m": 2.5,
+            "angular_interpolation": false
+          },
+          "target_treatment": "CENTER_ONLY"
+        }
+      }
+    },
+    {
+      "source_observation": {
+        "timestamp_utc": "2026-11-15T01:00:00Z",
+        "sun_azimuth_deg": 282.271753988,
+        "sun_elevation_deg": 1.603209564,
+        "earth_azimuth_deg": 165.672917053,
+        "earth_elevation_deg": -3.717398176,
+        "latitude_deg": -89.779454879477,
+        "longitude_east_deg": 191.6459742484832,
+        "altitude_km": 0.0,
+        "source": "NASA_JPL_HORIZONS",
+        "valid": true,
+        "quality": "SOURCE_BACKED"
+      },
+      "terrain": {
+        "sun": {
+          "state": "UNKNOWN",
+          "observer_reference_compatible": false,
+          "reasons": [
+            "DEM_VERTICAL_REFERENCE_UNVERIFIED",
+            "OBSERVER_POSITION_OR_ALTITUDE_MISMATCH",
+            "TERRAIN_ERROR_BOUND_UNRESOLVED"
+          ],
+          "ray": {
+            "azimuth_deg": 282.271753988,
+            "terrain_horizon_elevation_deg": -20.278439240763607,
+            "obstruction_distance_m": 9130.0,
+            "obstruction": {
+              "distance_m": 9130.0,
+              "source_x_m": 6996.071081815624,
+              "source_y_m": -10251.510215850645,
+              "latitude_deg": -89.590705819462,
+              "longitude_east_deg": 145.6886927411227,
+              "source_elevation_m": -2335.5417196719877,
+              "radius_m": 1735064.458280328
+            },
+            "supported_radius_m": 9130.0,
+            "supported_sample_count": 3652,
+            "supported_sample_interval_m": [
+              2.5,
+              9130.0
+            ],
+            "first_unknown_distance_m": 9132.5,
+            "stop_reason": "SOURCE_BOUNDARY",
+            "coverage": "PARTIAL",
+            "near_field_complete": false,
+            "far_field_complete": false,
+            "resolution_verified": false,
+            "uncertainty_deg": null,
+            "verified_obstruction_lower_bound_deg": null,
+            "sampling_step_m": 2.5,
+            "angular_interpolation": false
+          },
+          "target_treatment": "CENTER_ONLY"
+        },
+        "earth": {
+          "state": "UNKNOWN",
+          "observer_reference_compatible": false,
+          "reasons": [
+            "DEM_VERTICAL_REFERENCE_UNVERIFIED",
+            "OBSERVER_POSITION_OR_ALTITUDE_MISMATCH",
+            "TERRAIN_ERROR_BOUND_UNRESOLVED"
+          ],
+          "ray": {
+            "azimuth_deg": 165.672917053,
+            "terrain_horizon_elevation_deg": 6.89120664727295,
+            "obstruction_distance_m": 3795.0,
+            "obstruction": {
+              "distance_m": 3795.0,
+              "source_x_m": -1527.5174846358966,
+              "source_y_m": -2759.146266653373,
+              "latitude_deg": -89.89599571287108,
+              "longitude_east_deg": 208.9697737381297,
+              "source_elevation_m": 1472.5267438814717,
+              "radius_m": 1738872.5267438814
+            },
+            "supported_radius_m": 7555.0,
+            "supported_sample_count": 3022,
+            "supported_sample_interval_m": [
+              2.5,
+              7555.0
+            ],
+            "first_unknown_distance_m": 7557.5,
+            "stop_reason": "SOURCE_BOUNDARY",
+            "coverage": "PARTIAL",
+            "near_field_complete": false,
+            "far_field_complete": false,
+            "resolution_verified": false,
+            "uncertainty_deg": null,
+            "verified_obstruction_lower_bound_deg": null,
+            "sampling_step_m": 2.5,
+            "angular_interpolation": false
+          },
+          "target_treatment": "CENTER_ONLY"
+        }
+      }
+    },
+    {
+      "source_observation": {
+        "timestamp_utc": "2026-11-15T02:00:00Z",
+        "sun_azimuth_deg": 281.76412416,
+        "sun_elevation_deg": 1.601264801,
+        "earth_azimuth_deg": 165.615164979,
+        "earth_elevation_deg": -3.66799079,
+        "latitude_deg": -89.779454879477,
+        "longitude_east_deg": 191.6459742484832,
+        "altitude_km": 0.0,
+        "source": "NASA_JPL_HORIZONS",
+        "valid": true,
+        "quality": "SOURCE_BACKED"
+      },
+      "terrain": {
+        "sun": {
+          "state": "UNKNOWN",
+          "observer_reference_compatible": false,
+          "reasons": [
+            "DEM_VERTICAL_REFERENCE_UNVERIFIED",
+            "OBSERVER_POSITION_OR_ALTITUDE_MISMATCH",
+            "TERRAIN_ERROR_BOUND_UNRESOLVED"
+          ],
+          "ray": {
+            "azimuth_deg": 281.76412416,
+            "terrain_horizon_elevation_deg": -20.530072521287007,
+            "obstruction_distance_m": 9095.0,
+            "obstruction": {
+              "distance_m": 9095.0,
+              "source_x_m": 6996.417933187691,
+              "source_y_m": -10163.515354270492,
+              "latitude_deg": -89.59309293460757,
+              "longitude_east_deg": 145.45703451601779,
+              "source_elevation_m": -2368.156660433023,
+              "radius_m": 1735031.843339567
+            },
+            "supported_radius_m": 9095.0,
+            "supported_sample_count": 3638,
+            "supported_sample_interval_m": [
+              2.5,
+              9095.0
+            ],
+            "first_unknown_distance_m": 9097.5,
+            "stop_reason": "SOURCE_BOUNDARY",
+            "coverage": "PARTIAL",
+            "near_field_complete": false,
+            "far_field_complete": false,
+            "resolution_verified": false,
+            "uncertainty_deg": null,
+            "verified_obstruction_lower_bound_deg": null,
+            "sampling_step_m": 2.5,
+            "angular_interpolation": false
+          },
+          "target_treatment": "CENTER_ONLY"
+        },
+        "earth": {
+          "state": "UNKNOWN",
+          "observer_reference_compatible": false,
+          "reasons": [
+            "DEM_VERTICAL_REFERENCE_UNVERIFIED",
+            "OBSERVER_POSITION_OR_ALTITUDE_MISMATCH",
+            "TERRAIN_ERROR_BOUND_UNRESOLVED"
+          ],
+          "ray": {
+            "azimuth_deg": 165.615164979,
+            "terrain_horizon_elevation_deg": 6.920755679630197,
+            "obstruction_distance_m": 3797.5,
+            "obstruction": {
+              "distance_m": 3797.5,
+              "source_x_m": -1531.457886943918,
+              "source_y_m": -2756.829974780889,
+              "latitude_deg": -89.895999493121,
+              "longitude_east_deg": 209.0527884727107,
+              "source_elevation_m": 1474.8241153760207,
+              "radius_m": 1738874.824115376
+            },
+            "supported_radius_m": 7555.0,
+            "supported_sample_count": 3022,
+            "supported_sample_interval_m": [
+              2.5,
+              7555.0
+            ],
+            "first_unknown_distance_m": 7557.5,
+            "stop_reason": "SOURCE_BOUNDARY",
+            "coverage": "PARTIAL",
+            "near_field_complete": false,
+            "far_field_complete": false,
+            "resolution_verified": false,
+            "uncertainty_deg": null,
+            "verified_obstruction_lower_bound_deg": null,
+            "sampling_step_m": 2.5,
+            "angular_interpolation": false
+          },
+          "target_treatment": "CENTER_ONLY"
+        }
+      }
+    }
+  ],
+  "original_metadata": {
+    "processing_version": "1.0.0",
+    "generated_at_utc": "2026-11-14T13:57:40.366159+00:00",
+    "source": "NASA JPL Horizons",
+    "feature_names": [
+      "sun_azimuth_deg",
+      "sun_elevation_deg",
+      "earth_azimuth_deg",
+      "earth_elevation_deg"
+    ],
+    "units": {
+      "sun_azimuth_deg": "degree",
+      "sun_elevation_deg": "degree",
+      "earth_azimuth_deg": "degree",
+      "earth_elevation_deg": "degree",
+      "latitude_deg": "degree",
+      "longitude_east_deg": "degree",
+      "altitude_km": "km",
+      "timestamp_utc": "UTC"
+    },
+    "request": {
+      "latitude_deg": -89.779454879477,
+      "longitude_east_deg": 191.6459742484832,
+      "altitude_km": 0.0,
+      "altitude_reference": "horizons_lunar_reference",
+      "start_utc": "2026-11-15T00:00:00Z",
+      "end_utc": "2026-11-22T00:00:00Z",
+      "step_minutes": 60
+    },
+    "queries": {
+      "sun": {
+        "query_parameters": {
+          "format": "json",
+          "COMMAND": "'10'",
+          "EPHEM_TYPE": "'OBSERVER'",
+          "CENTER": "'coord@301'",
+          "COORD_TYPE": "'GEODETIC'",
+          "SITE_COORD": "'191.6459742484832,-89.779454879477,0.0'",
+          "START_TIME": "'2026-11-15 00:00'",
+          "STOP_TIME": "'2026-11-22 00:00'",
+          "STEP_SIZE": "'60 min'",
+          "QUANTITIES": "'4'",
+          "TIME_TYPE": "'UT'",
+          "TIME_ZONE": "'+00:00'",
+          "CSV_FORMAT": "'YES'",
+          "MAKE_EPHEM": "'YES'",
+          "OBJ_DATA": "'NO'",
+          "APPARENT": "'AIRLESS'",
+          "ANG_FORMAT": "'DEG'",
+          "TIME_DIGITS": "'SECONDS'",
+          "ELEV_CUT": "'-90'",
+          "SKIP_DAYLT": "'NO'",
+          "EXTRA_PREC": "'YES'"
+        },
+        "source_url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%2710%27&EPHEM_TYPE=%27OBSERVER%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27191.6459742484832%2C-89.779454879477%2C0.0%27&START_TIME=%272026-11-15+00%3A00%27&STOP_TIME=%272026-11-22+00%3A00%27&STEP_SIZE=%2760+min%27&QUANTITIES=%274%27&TIME_TYPE=%27UT%27&TIME_ZONE=%27%2B00%3A00%27&CSV_FORMAT=%27YES%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&APPARENT=%27AIRLESS%27&ANG_FORMAT=%27DEG%27&TIME_DIGITS=%27SECONDS%27&ELEV_CUT=%27-90%27&SKIP_DAYLT=%27NO%27&EXTRA_PREC=%27YES%27",
+        "raw_sha256": "701fac645aa88b8fa168997c674f229a5bab14d4a31e7c573662350011c6f63f",
+        "retrieved_at_utc": "2026-11-14T13:22:08.843613+00:00",
+        "parser_version": "wispr-observer-csv-1",
+        "api_signature": {
+          "version": "1.2",
+          "source": "NASA/JPL Horizons API"
+        },
+        "ephemeris_header": "\n\n*******************************************************************************\nEphemeris / API_USER Sat Nov 14 05:22:08 2026 Pasadena, USA      / Horizons    \n*******************************************************************************\nTarget body name: Sun (10)                        {source: DE441}\nCenter body name: Moon (301)                      {source: DE441}\nCenter-site name: (user defined site below)\n*******************************************************************************\nStart time      : A.D. 2026-Nov-15 00:00:00.0000 UT      \nStop  time      : A.D. 2026-Nov-22 00:00:00.0000 UT      \nStep-size       : 60 minutes\n*******************************************************************************\nTarget pole/equ : IAU_SUN                         {East-longitude positive}\nTarget radii    : 695700.0, 695700.0, 695700.0 km {Equator_a, b, pole_c}       \nCenter geodetic : 191.6459742,-89.7794549,-3.85783E-13 {E-lon(deg),Lat(deg),Alt(km)}\nCenter cylindric: 191.6459742, 6.68765, -1737.39  {E-lon(deg),Dxy(km),Dz(km)}\nCenter pole/equ : MEAN_ME (high precision)        {East-longitude positive}\nCenter radii    : 1737.4, 1737.4, 1737.4 km       {Equator_a, b, pole_c}       \nTarget primary  : Sun\nVis. interferer : EARTH (R_eq= 6378.137) km       {source: DE441}\nRel. light bend : Sun, EARTH                      {source: DE441}\nRel. lght bnd GM: 1.3271E+11, 3.9860E+05 km^3/s^2                              \nAtmos refraction: NO (AIRLESS)\nRA format       : DEG\nTime format     : CAL \nCalendar mode   : Mixed Julian/Gregorian\nEOP file        : eop.261113.p270209                                           \nEOP coverage    : DATA-BASED 1962-JAN-20 TO 2026-NOV-13. PREDICTS-> 2027-FEB-08\nUnits conversion: 1 au= 149597870.700 km, c= 299792.458 km/s, 1 day= 86400.0 s \nTable cut-offs 1: Elevation (-90.0deg=NO ),Airmass     n.a.    , Daylight (NO )\nTable cut-offs 2: Solar elongation (  0.0,180.0=NO ),Local Hour Angle( 0.0=NO )\nTable cut-offs 3: RA/DEC angular rate (     0.0=NO )                           \nTable format    : Comma Separated Values (spreadsheet)\n*******************************************************************************\n Date__(UT)__HR:MN:SS, , ,Azimuth_(a-app), Elevation_(a-app),\n*************************************************************\n",
+        "delivery": "VERIFIED_CACHE"
+      },
+      "earth": {
+        "query_parameters": {
+          "format": "json",
+          "COMMAND": "'399'",
+          "EPHEM_TYPE": "'OBSERVER'",
+          "CENTER": "'coord@301'",
+          "COORD_TYPE": "'GEODETIC'",
+          "SITE_COORD": "'191.6459742484832,-89.779454879477,0.0'",
+          "START_TIME": "'2026-11-15 00:00'",
+          "STOP_TIME": "'2026-11-22 00:00'",
+          "STEP_SIZE": "'60 min'",
+          "QUANTITIES": "'4'",
+          "TIME_TYPE": "'UT'",
+          "TIME_ZONE": "'+00:00'",
+          "CSV_FORMAT": "'YES'",
+          "MAKE_EPHEM": "'YES'",
+          "OBJ_DATA": "'NO'",
+          "APPARENT": "'AIRLESS'",
+          "ANG_FORMAT": "'DEG'",
+          "TIME_DIGITS": "'SECONDS'",
+          "ELEV_CUT": "'-90'",
+          "SKIP_DAYLT": "'NO'",
+          "EXTRA_PREC": "'YES'"
+        },
+        "source_url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27399%27&EPHEM_TYPE=%27OBSERVER%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27191.6459742484832%2C-89.779454879477%2C0.0%27&START_TIME=%272026-11-15+00%3A00%27&STOP_TIME=%272026-11-22+00%3A00%27&STEP_SIZE=%2760+min%27&QUANTITIES=%274%27&TIME_TYPE=%27UT%27&TIME_ZONE=%27%2B00%3A00%27&CSV_FORMAT=%27YES%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&APPARENT=%27AIRLESS%27&ANG_FORMAT=%27DEG%27&TIME_DIGITS=%27SECONDS%27&ELEV_CUT=%27-90%27&SKIP_DAYLT=%27NO%27&EXTRA_PREC=%27YES%27",
+        "raw_sha256": "bc7628a06c765795ddcf9d40c86c4570ffd2b5835310f296792f1c66fb63b7a7",
+        "retrieved_at_utc": "2026-11-14T13:22:09.887529+00:00",
+        "parser_version": "wispr-observer-csv-1",
+        "api_signature": {
+          "version": "1.2",
+          "source": "NASA/JPL Horizons API"
+        },
+        "ephemeris_header": "\n\n*******************************************************************************\nEphemeris / API_USER Sat Nov 14 05:22:09 2026 Pasadena, USA      / Horizons    \n*******************************************************************************\nTarget body name: Earth (399)                     {source: DE441}\nCenter body name: Moon (301)                      {source: DE441}\nCenter-site name: (user defined site below)\n*******************************************************************************\nStart time      : A.D. 2026-Nov-15 00:00:00.0000 UT      \nStop  time      : A.D. 2026-Nov-22 00:00:00.0000 UT      \nStep-size       : 60 minutes\n*******************************************************************************\nTarget pole/equ : ITRF93 (high precision)         {East-longitude positive}\nTarget radii    : 6378.137, 6378.137, 6356.752 km {Equator_a, b, pole_c}       \nCenter geodetic : 191.6459742,-89.7794549,-3.85783E-13 {E-lon(deg),Lat(deg),Alt(km)}\nCenter cylindric: 191.6459742, 6.68765, -1737.39  {E-lon(deg),Dxy(km),Dz(km)}\nCenter pole/equ : MEAN_ME (high precision)        {East-longitude positive}\nCenter radii    : 1737.4, 1737.4, 1737.4 km       {Equator_a, b, pole_c}       \nTarget primary  : Sun\nVis. interferer : EARTH (R_eq= 6378.137) km       {source: DE441}\nRel. light bend : Sun, EARTH                      {source: DE441}\nRel. lght bnd GM: 1.3271E+11, 3.9860E+05 km^3/s^2                              \nAtmos refraction: NO (AIRLESS)\nRA format       : DEG\nTime format     : CAL \nCalendar mode   : Mixed Julian/Gregorian\nEOP file        : eop.261113.p270209                                           \nEOP coverage    : DATA-BASED 1962-JAN-20 TO 2026-NOV-13. PREDICTS-> 2027-FEB-08\nUnits conversion: 1 au= 149597870.700 km, c= 299792.458 km/s, 1 day= 86400.0 s \nTable cut-offs 1: Elevation (-90.0deg=NO ),Airmass     n.a.    , Daylight (NO )\nTable cut-offs 2: Solar elongation (  0.0,180.0=NO ),Local Hour Angle( 0.0=NO )\nTable cut-offs 3: RA/DEC angular rate (     0.0=NO )                           \nTable format    : Comma Separated Values (spreadsheet)\n*******************************************************************************\n Date__(UT)__HR:MN:SS, , ,Azimuth_(a-app), Elevation_(a-app),\n*************************************************************\n",
+        "delivery": "VERIFIED_CACHE"
+      }
+    },
+    "coordinate_reference": "MOON_ME / DE421 mean-Earth frame; Horizons lunar reference surface",
+    "altitude_reference": "horizons_lunar_reference",
+    "azimuth_convention": "clockwise from north, [0,360)",
+    "elevation_convention": "airless apparent target center above local normal plane; degrees",
+    "time_standard": "UTC (Horizons UT for modern dates)",
+    "target_timestamp_sets_match": true,
+    "sample_count": 169,
+    "missing_observations": 0,
+    "data_quality": "SOURCE_BACKED",
+    "limitations": [
+      "Research prototype, not flight or mission certified",
+      "No terrain obstruction, illumination windows, power or communications link budget calculated",
+      "DEM heights require verified frame and vertical-reference conversion before use",
+      "Quantity 4 is apparent geometry including light-time and aberration, not uncorrected geometric vectors"
+    ]
+  },
+  "horizon": {
+    "cell_id": "SITE04_R000_C001",
+    "observer_height_m": 1.0,
+    "model": "TERRAIN_PARTIAL",
+    "algorithm_version": "terrain-horizon-1.0.0",
+    "far_field_complete": false,
+    "coverage": "PARTIAL",
+    "azimuth_samples": [
+      {
+        "azimuth_deg": 282.779394629,
+        "terrain_horizon_elevation_deg": -20.00885368939782,
+        "obstruction_distance_m": 9167.5,
+        "obstruction": {
+          "distance_m": 9167.5,
+          "source_x_m": 6997.093243287278,
+          "source_y_m": -10340.816804220933,
+          "latitude_deg": -89.58825096462938,
+          "longitude_east_deg": 145.91583070793962,
+          "source_elevation_m": -2300.3759899161946,
+          "radius_m": 1735099.6240100837
+        },
+        "supported_radius_m": 9167.5,
+        "supported_sample_count": 3667,
+        "supported_sample_interval_m": [
+          2.5,
+          9167.5
+        ],
+        "first_unknown_distance_m": 9170.0,
+        "stop_reason": "SOURCE_BOUNDARY",
+        "coverage": "PARTIAL",
+        "near_field_complete": false,
+        "far_field_complete": false,
+        "resolution_verified": false,
+        "uncertainty_deg": null,
+        "verified_obstruction_lower_bound_deg": null,
+        "sampling_step_m": 2.5,
+        "angular_interpolation": false
+      },
+      {
+        "azimuth_deg": 165.73073342,
+        "terrain_horizon_elevation_deg": 6.8628767909256565,
+        "obstruction_distance_m": 3795.0,
+        "obstruction": {
+          "distance_m": 3795.0,
+          "source_x_m": -1523.6921053069461,
+          "source_y_m": -2758.9690686513377,
+          "latitude_deg": -89.89606187155616,
+          "longitude_east_deg": 208.91049368301185,
+          "source_elevation_m": 1470.6208966960144,
+          "radius_m": 1738870.620896696
+        },
+        "supported_radius_m": 7555.0,
+        "supported_sample_count": 3022,
+        "supported_sample_interval_m": [
+          2.5,
+          7555.0
+        ],
+        "first_unknown_distance_m": 7557.5,
+        "stop_reason": "SOURCE_BOUNDARY",
+        "coverage": "PARTIAL",
+        "near_field_complete": false,
+        "far_field_complete": false,
+        "resolution_verified": false,
+        "uncertainty_deg": null,
+        "verified_obstruction_lower_bound_deg": null,
+        "sampling_step_m": 2.5,
+        "angular_interpolation": false
+      },
+      {
+        "azimuth_deg": 282.271753988,
+        "terrain_horizon_elevation_deg": -20.278439240763607,
+        "obstruction_distance_m": 9130.0,
+        "obstruction": {
+          "distance_m": 9130.0,
+          "source_x_m": 6996.071081815624,
+          "source_y_m": -10251.510215850645,
+          "latitude_deg": -89.590705819462,
+          "longitude_east_deg": 145.6886927411227,
+          "source_elevation_m": -2335.5417196719877,
+          "radius_m": 1735064.458280328
+        },
+        "supported_radius_m": 9130.0,
+        "supported_sample_count": 3652,
+        "supported_sample_interval_m": [
+          2.5,
+          9130.0
+        ],
+        "first_unknown_distance_m": 9132.5,
+        "stop_reason": "SOURCE_BOUNDARY",
+        "coverage": "PARTIAL",
+        "near_field_complete": false,
+        "far_field_complete": false,
+        "resolution_verified": false,
+        "uncertainty_deg": null,
+        "verified_obstruction_lower_bound_deg": null,
+        "sampling_step_m": 2.5,
+        "angular_interpolation": false
+      },
+      {
+        "azimuth_deg": 165.672917053,
+        "terrain_horizon_elevation_deg": 6.89120664727295,
+        "obstruction_distance_m": 3795.0,
+        "obstruction": {
+          "distance_m": 3795.0,
+          "source_x_m": -1527.5174846358966,
+          "source_y_m": -2759.146266653373,
+          "latitude_deg": -89.89599571287108,
+          "longitude_east_deg": 208.9697737381297,
+          "source_elevation_m": 1472.5267438814717,
+          "radius_m": 1738872.5267438814
+        },
+        "supported_radius_m": 7555.0,
+        "supported_sample_count": 3022,
+        "supported_sample_interval_m": [
+          2.5,
+          7555.0
+        ],
+        "first_unknown_distance_m": 7557.5,
+        "stop_reason": "SOURCE_BOUNDARY",
+        "coverage": "PARTIAL",
+        "near_field_complete": false,
+        "far_field_complete": false,
+        "resolution_verified": false,
+        "uncertainty_deg": null,
+        "verified_obstruction_lower_bound_deg": null,
+        "sampling_step_m": 2.5,
+        "angular_interpolation": false
+      },
+      {
+        "azimuth_deg": 281.76412416,
+        "terrain_horizon_elevation_deg": -20.530072521287007,
+        "obstruction_distance_m": 9095.0,
+        "obstruction": {
+          "distance_m": 9095.0,
+          "source_x_m": 6996.417933187691,
+          "source_y_m": -10163.515354270492,
+          "latitude_deg": -89.59309293460757,
+          "longitude_east_deg": 145.45703451601779,
+          "source_elevation_m": -2368.156660433023,
+          "radius_m": 1735031.843339567
+        },
+        "supported_radius_m": 9095.0,
+        "supported_sample_count": 3638,
+        "supported_sample_interval_m": [
+          2.5,
+          9095.0
+        ],
+        "first_unknown_distance_m": 9097.5,
+        "stop_reason": "SOURCE_BOUNDARY",
+        "coverage": "PARTIAL",
+        "near_field_complete": false,
+        "far_field_complete": false,
+        "resolution_verified": false,
+        "uncertainty_deg": null,
+        "verified_obstruction_lower_bound_deg": null,
+        "sampling_step_m": 2.5,
+        "angular_interpolation": false
+      },
+      {
+        "azimuth_deg": 165.615164979,
+        "terrain_horizon_elevation_deg": 6.920755679630197,
+        "obstruction_distance_m": 3797.5,
+        "obstruction": {
+          "distance_m": 3797.5,
+          "source_x_m": -1531.457886943918,
+          "source_y_m": -2756.829974780889,
+          "latitude_deg": -89.895999493121,
+          "longitude_east_deg": 209.0527884727107,
+          "source_elevation_m": 1474.8241153760207,
+          "radius_m": 1738874.824115376
+        },
+        "supported_radius_m": 7555.0,
+        "supported_sample_count": 3022,
+        "supported_sample_interval_m": [
+          2.5,
+          7555.0
+        ],
+        "first_unknown_distance_m": 7557.5,
+        "stop_reason": "SOURCE_BOUNDARY",
+        "coverage": "PARTIAL",
+        "near_field_complete": false,
+        "far_field_complete": false,
+        "resolution_verified": false,
+        "uncertainty_deg": null,
+        "verified_obstruction_lower_bound_deg": null,
+        "sampling_step_m": 2.5,
+        "angular_interpolation": false
+      }
+    ],
+    "max_supported_radius_m": 9167.5,
+    "observer_ground_height_m": 1008.3356475844004,
+    "observer_radius_m": 1738409.3356475844,
+    "observation_position": {
+      "latitude_deg": -89.779454879477,
+      "longitude_east_deg": 191.6459742484832,
+      "x_m": -1350.0000000026087,
+      "y_m": -6550.000000012666
+    },
+    "vertical_reference_verified": false,
+    "reference_settings": {
+      "radius_m": 1737400.0,
+      "frame": "MOON_ME_DE421",
+      "height_interpretation": "radial_height_above_reference_sphere",
+      "vertical_reference_verified": false,
+      "vertical_reference_evidence": "",
+      "height_offset_m": 0.0,
+      "elevation_error_bound_m": null,
+      "error_bound_evidence": ""
+    },
+    "azimuth_convention": "clockwise from north, [0,360)",
+    "sampling_step_m": 2.5,
+    "angular_resolution_deg": null,
+    "direction_mode": "EXACT_REQUESTED_AZIMUTHS",
+    "source_provenance": {
+      "source_url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site04/Site04_final_adj_5mpp_surf.tif",
+      "source_vertical_reference": "DEM height Z in metres as defined by NASA PGDA; verify JPL Horizons compatibility before using observer elevation",
+      "source_frame": "MOON_ME / DE421",
+      "package_manifest_sha256": "694911f0b0caae7b6071b525d229f3ea7a88592fa38d39c9d8d195701ab36efe",
+      "verified_files": {
+        "baseline/grid_metadata.json": "e2dd99b19aa03acd5c26f19791332b3191e274932ea454cf44accbdaeb1670b6",
+        "Site04_final_adj_5mpp_surf.tif": "38ff70dbdf2f066c2cfa94a646c3a59d653ce7f6b4528b15fc1b43ee397ce758",
+        "tile_manifest.json": "51e1437f06155f128923f51386fc45588342bce395c256c7b44ad5ca1423ba42",
+        "baseline/grid.parquet": "dc32b04162bd3db3e114ba816a1958f1ef918d7f38effa7eaee992ca32fa45e4",
+        "baseline/neighbors.parquet": "952c3be5e22f1fefa9066f9354555d1935a73e58d0621bcde0e02d3ae27110e5",
+        "baseline/grid_geometry.parquet": "2de40301a6f4cddbf572f57060c3b6637a03f681a6d084ed540ee29930dcf8b0",
+        "tiles/SITE04_TILE_R00_C00/tile_metadata.json": "ba07187468f3d712507c974d1650a09e01508d6904c3bc1063e74a370efd0d8d",
+        "tiles/SITE04_TILE_R00_C00/cells.jsonl": "d075004423fc646cf3e20edc9a4fad3e553702ab908554c014a6d1630d5de646",
+        "tiles/SITE04_TILE_R00_C01/tile_metadata.json": "982bbdb87ad68624d5a33411b7451a371ebbc01c411d482d7affbd4468ebb7b8",
+        "tiles/SITE04_TILE_R00_C01/cells.jsonl": "bf91d7a1bd7bfacec004d777a4d4fc32e4dd11d245853b2f339caf8e2a49253c",
+        "tiles/SITE04_TILE_R01_C00/tile_metadata.json": "767613394aca7d88ab7e6199feafb8642f620484c9afccb56c44d2b9cb6aba96",
+        "tiles/SITE04_TILE_R01_C00/cells.jsonl": "6010b75c0447dca003a1ca0025481e4505a23e38a2697402c8db2444c296f225",
+        "tiles/SITE04_TILE_R01_C01/tile_metadata.json": "249a93dbbe20bba3b20927635c92633501e9d0887384e3271ebf48ccb0547445",
+        "tiles/SITE04_TILE_R01_C01/cells.jsonl": "8cf6bc6b876e0883378658e1aeb68dcca28a1adaba99bd25b5e15d23c81120cd"
+      },
+      "dataset_id": "SITE04_NW_ORIGIN_PRESERVED_2KM_100M__tiles_3.0.0",
+      "raw_sha256": "38ff70dbdf2f066c2cfa94a646c3a59d653ce7f6b4528b15fc1b43ee397ce758",
+      "checksum_verified": true,
+      "source_filename": "Site04_final_adj_5mpp_surf.tif"
+    },
+    "raster_sha256": "38ff70dbdf2f066c2cfa94a646c3a59d653ce7f6b4528b15fc1b43ee397ce758",
+    "source_manifest": {
+      "source_url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site04/Site04_final_adj_5mpp_surf.tif",
+      "source_vertical_reference": "DEM height Z in metres as defined by NASA PGDA; verify JPL Horizons compatibility before using observer elevation",
+      "source_frame": "MOON_ME / DE421",
+      "package_manifest_sha256": "694911f0b0caae7b6071b525d229f3ea7a88592fa38d39c9d8d195701ab36efe",
+      "verified_files": {
+        "baseline/grid_metadata.json": "e2dd99b19aa03acd5c26f19791332b3191e274932ea454cf44accbdaeb1670b6",
+        "Site04_final_adj_5mpp_surf.tif": "38ff70dbdf2f066c2cfa94a646c3a59d653ce7f6b4528b15fc1b43ee397ce758",
+        "tile_manifest.json": "51e1437f06155f128923f51386fc45588342bce395c256c7b44ad5ca1423ba42",
+        "baseline/grid.parquet": "dc32b04162bd3db3e114ba816a1958f1ef918d7f38effa7eaee992ca32fa45e4",
+        "baseline/neighbors.parquet": "952c3be5e22f1fefa9066f9354555d1935a73e58d0621bcde0e02d3ae27110e5",
+        "baseline/grid_geometry.parquet": "2de40301a6f4cddbf572f57060c3b6637a03f681a6d084ed540ee29930dcf8b0",
+        "tiles/SITE04_TILE_R00_C00/tile_metadata.json": "ba07187468f3d712507c974d1650a09e01508d6904c3bc1063e74a370efd0d8d",
+        "tiles/SITE04_TILE_R00_C00/cells.jsonl": "d075004423fc646cf3e20edc9a4fad3e553702ab908554c014a6d1630d5de646",
+        "tiles/SITE04_TILE_R00_C01/tile_metadata.json": "982bbdb87ad68624d5a33411b7451a371ebbc01c411d482d7affbd4468ebb7b8",
+        "tiles/SITE04_TILE_R00_C01/cells.jsonl": "bf91d7a1bd7bfacec004d777a4d4fc32e4dd11d245853b2f339caf8e2a49253c",
+        "tiles/SITE04_TILE_R01_C00/tile_metadata.json": "767613394aca7d88ab7e6199feafb8642f620484c9afccb56c44d2b9cb6aba96",
+        "tiles/SITE04_TILE_R01_C00/cells.jsonl": "6010b75c0447dca003a1ca0025481e4505a23e38a2697402c8db2444c296f225",
+        "tiles/SITE04_TILE_R01_C01/tile_metadata.json": "249a93dbbe20bba3b20927635c92633501e9d0887384e3271ebf48ccb0547445",
+        "tiles/SITE04_TILE_R01_C01/cells.jsonl": "8cf6bc6b876e0883378658e1aeb68dcca28a1adaba99bd25b5e15d23c81120cd"
+      },
+      "dataset_id": "SITE04_NW_ORIGIN_PRESERVED_2KM_100M__tiles_3.0.0",
+      "raw_sha256": "38ff70dbdf2f066c2cfa94a646c3a59d653ce7f6b4528b15fc1b43ee397ce758",
+      "checksum_verified": true,
+      "source_filename": "Site04_final_adj_5mpp_surf.tif"
+    },
+    "raster_metadata": {
+      "width": 3200,
+      "height": 3200,
+      "crs_wkt": "PROJCRS[\"unnamed\",BASEGEOGCRS[\"unnamed ellipse\",DATUM[\"unknown\",ELLIPSOID[\"unnamed\",1737400,0,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]]],PRIMEM[\"Greenwich\",0,ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9122]]]],CONVERSION[\"unnamed\",METHOD[\"Polar Stereographic (variant B)\",ID[\"EPSG\",9829]],PARAMETER[\"Latitude of standard parallel\",-90,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8832]],PARAMETER[\"Longitude of origin\",0,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8833]],PARAMETER[\"False easting\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8806]],PARAMETER[\"False northing\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8807]]],CS[Cartesian,2],AXIS[\"easting\",north,ORDER[1],LENGTHUNIT[\"metre\",1]],AXIS[\"northing\",north,ORDER[2],LENGTHUNIT[\"metre\",1]]]",
+      "affine": [
+        5.0,
+        0.0,
+        -9000.0,
+        0.0,
+        -5.0,
+        1000.0
+      ],
+      "bounds_m": [
+        -9000.0,
+        -15000.0,
+        7000.0,
+        1000.0
+      ],
+      "pixel_size_m": [
+        5.0,
+        5.0
+      ],
+      "dtype": "float32",
+      "nodata": "nan",
+      "valid_pixels": 10240000,
+      "invalid_pixels": 0,
+      "elevation_min_m": -2847.877197265625,
+      "elevation_max_m": 1805.0726318359375,
+      "elevation_mean_m": 245.34379158594027
+    },
+    "target_treatment": "CENTER_ONLY",
+    "limitations": [
+      "Finite local DEM cannot certify a clear lunar far field.",
+      "Bilinear samples form a discrete skyline lower estimate, not a continuous upper bound.",
+      "The open interval from observer to first sample and subpixel terrain remain unresolved.",
+      "No finite angular error bound follows from pixel size or a sampling convergence check.",
+      "Target centers only: no solar disk fraction, full illumination or Earth disk treatment.",
+      "CONDITIONAL DIAGNOSTIC: DEM Z assumed radial above the declared sphere; vertical conversion is unverified. Physical visibility must remain UNKNOWN."
+    ]
+  },
+  "compatibility_failures": [
+    "DEM_VERTICAL_REFERENCE_UNVERIFIED",
+    "OBSERVER_POSITION_OR_ALTITUDE_MISMATCH"
+  ],
+  "target_treatment": "CENTER_ONLY"
+}
