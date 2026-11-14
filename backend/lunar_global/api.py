@@ -180,10 +180,10 @@ router = APIRouter(
     prefix="/api/v1/science/global",
     tags=["global-science"],
     responses={
-        404: {"model": ScienceError},
-        422: {"model": ScienceError},
-        429: {"model": ScienceError},
-        503: {"model": ScienceError},
+        404: {"model": ScienceError, "description": "Not Found"},
+        422: {"model": ScienceError, "description": "Invalid scientific or schema request"},
+        429: {"model": ScienceError, "description": "Analysis capacity exceeded"},
+        503: {"model": ScienceError, "description": "Scientific source unavailable"},
     },
 )
 
