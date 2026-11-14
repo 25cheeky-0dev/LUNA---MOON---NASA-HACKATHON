@@ -7,6 +7,7 @@ from fastapi import FastAPI, HTTPException, Query
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, Response
+from celestial_engine.api import router as celestial_router
 from app.catalog import SITES, SITE_WARNING
 from app.metadata import metadata, aggregate
 from app.schemas import (RecoveryRequest, RecoveryResponse, AnalyzeRequest, EphemerisRequest,
@@ -22,6 +23,7 @@ from app.science.features import feature_space
 app = FastAPI(title='WISPR lunar visibility', version='0.1.0', description='Sampled geometric estimates with explicit provenance and unknown states. No mission commands.')
 app.add_middleware(CORSMiddleware, allow_origins=os.getenv('CORS_ORIGINS','http://localhost:5173,http://127.0.0.1:5173').split(','),
     allow_methods=['GET','POST'],allow_headers=['Content-Type'])
+app.include_router(celestial_router)
 provider = Horizons()
 scenarios = OrderedDict()
 requests_gate = asyncio.Semaphore(2)
