@@ -40,8 +40,11 @@ async def interpret(request):
             requirements.future_search_days = 0
             # Require literal evidence for critical extracted fields. More flexible
             # date language can be entered through the reviewed manual UTC form.
-            if requirements.original_arrival_utc and requirements.original_arrival_utc.strftime('%Y-%m-%d') not in request.text:
-                requirements.original_arrival_utc = None
+            if requirements.original_arrival_utc:
+                stamp = requirements.original_arrival_utc
+                evidence = re.escape(stamp.strftime('%Y-%m-%d')) + r'[T\s]+' + re.escape(stamp.strftime('%H:%M')) + r'(?::00)?\s*(?:Z|UTC|\+00:00)(?![\w:+-])'
+                if not re.search(r'(?<!\d)' + evidence, request.text, re.IGNORECASE):
+                    requirements.original_arrival_utc = None
             if requirements.original_site_id and not re.search(r'\b'+requirements.original_site_id+r'\b',request.text,re.IGNORECASE):
                 requirements.original_site_id = None
             if requirements.study_duration_hours is not None:

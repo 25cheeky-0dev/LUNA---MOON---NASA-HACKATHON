@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
@@ -48,6 +48,11 @@ class RecoveryRequest(Strict):
     def whole_minutes(self):
         if self.study_duration_hours and abs(self.study_duration_hours * 60 - round(self.study_duration_hours * 60)) > 1e-8:
             raise ValueError('Study duration must be a whole number of minutes')
+        if self.original_arrival_utc and self.study_duration_hours:
+            latest_end = self.original_arrival_utc + timedelta(
+                hours=self.delay_hours + self.study_duration_hours, days=self.future_search_days)
+            if latest_end.year > 2100:
+                raise ValueError('The delayed study and future search must end within 1900–2100')
         return self
 
 

@@ -112,15 +112,18 @@ def horizon(site_id, observer_height_m, az_step_deg, *, position=None):
             lon, lat, _ = geod.fwd(np.full(len(distances),longitude), np.full(len(distances),latitude), np.full(len(distances),az), distances)
             xs, ys = transformer.transform(lon,lat)
             vals = list(raster.sample(zip(xs,ys), masked=True))
-            angles, supported = [], 0.
+            angles, obstructions, supported = [], [], 0.
             for d, xx, yy, value in zip(distances,xs,ys,vals):
                 if not (raster.bounds.left <= xx < raster.bounds.right and raster.bounds.bottom < yy <= raster.bounds.top) or np.ma.is_masked(value[0]) or not np.isfinite(value[0]):
                     break
                 angles.append(curvature_angle(float(d), float(value[0])-float(origin)-observer_height_m))
+                obstructions.append((float(d), float(value[0])))
                 supported = float(d)
             radii.append(supported)
             samples.append(dict(azimuth_deg=az, terrain_horizon_elevation_deg=max(angles) if angles else None,
-                coverage='PARTIAL' if angles else 'UNKNOWN', uncertainty_deg=None, supported_radius_m=supported))
+                coverage='PARTIAL' if angles else 'UNKNOWN', uncertainty_deg=None, supported_radius_m=supported,
+                controlling_obstruction_distance_m=obstructions[int(np.argmax(angles))][0] if angles else None,
+                controlling_obstruction_elevation_m=obstructions[int(np.argmax(angles))][1] if angles else None))
         return dict(observation_position=dict(latitude_deg=latitude, longitude_east_deg=longitude), source_manifest=manifest, raster_sha256=digest, azimuth_samples=samples, max_supported_radius_m=max(radii,default=0), far_field_complete=False,
             observer_ground_height_m=float(origin), observer_height_m=observer_height_m,
             **metadata('NASA_LOLA_DEM','TERRAIN_PARTIAL','PARTIAL',limitations=[

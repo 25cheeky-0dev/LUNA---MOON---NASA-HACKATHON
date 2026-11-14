@@ -5779,6 +5779,122 @@
         "summary": "Interpret Route"
       }
     },
+    "/api/v1/navigation/demo/cells": {
+      "get": {
+        "operationId": "demo_cells_api_v1_navigation_demo_cells_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Demo Cells",
+        "tags": [
+          "navigation"
+        ]
+      }
+    },
+    "/api/v1/navigation/demo/delay": {
+      "post": {
+        "operationId": "demo_delay_api_v1_navigation_demo_delay_post",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Demo Delay",
+        "tags": [
+          "navigation"
+        ]
+      }
+    },
+    "/api/v1/navigation/interpret": {
+      "post": {
+        "operationId": "selected_cell_intent_api_v1_navigation_interpret_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InterpretRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Selected Cell Intent",
+        "tags": [
+          "navigation"
+        ]
+      }
+    },
+    "/api/v1/navigation/locations": {
+      "get": {
+        "operationId": "locations_api_v1_navigation_locations_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Locations",
+        "tags": [
+          "navigation"
+        ]
+      }
+    },
+    "/api/v1/navigation/terrain/model": {
+      "get": {
+        "description": "Serve only the original package mesh after its manifest checksum passes.",
+        "operationId": "terrain_model_api_v1_navigation_terrain_model_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Terrain Model",
+        "tags": [
+          "navigation"
+        ]
+      }
+    },
     "/api/v1/recovery": {
       "post": {
         "operationId": "recovery_api_v1_recovery_post",

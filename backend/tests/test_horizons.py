@@ -114,3 +114,10 @@ def test_tampered_cache_never_used(tmp_path):
     request=EphemerisRequest(site_id='R01',start_utc='2026-11-20T00:00:00Z',end_utc='2026-11-20T00:10:00Z',source_preference='VERIFIED_CACHE_ONLY')
     with pytest.raises(SourceUnavailable):
         asyncio.run(provider.ephemeris(request))
+
+
+def test_minute_precision_timestamps():
+    raw = synthetic_table().replace('00:00:00,', '00:00,').replace('00:05:00,', '00:05,')
+    records = parse_response(raw, 10, SITE)
+    assert list(records) == ['2026-11-20T00:00:00Z', '2026-11-20T00:05:00Z']
+    assert records['2026-11-20T00:05:00Z']['el_deg'] == 1.1

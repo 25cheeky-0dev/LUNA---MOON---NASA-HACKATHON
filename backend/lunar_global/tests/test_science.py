@@ -187,7 +187,7 @@ def test_global_analysis_reuses_scenario_store(monkeypatch):
     from lunar_global import api
 
     # Genuine recorded result, not a fabricated NASA observation.
-    path = Path("../docs/evidence/global/global-nasa-analysis.json")
+    path = Path(__file__).resolve().parents[3] / "docs/evidence/global/global-nasa-analysis.json"
     result = json.loads(path.read_text())
     result.pop("scenario_id", None)
     monkeypatch.setattr(

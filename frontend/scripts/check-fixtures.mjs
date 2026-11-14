@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { createServer } from 'vite';
 
-const server=await createServer({server:{middlewareMode:true},appType:'custom'});
+const server=await createServer({server:{middlewareMode:true,hmr:false,ws:false},optimizeDeps:{noDiscovery:true},appType:'custom'});
 try {
   const {fixture,fixtureFeatures,fixtureGrids}=await server.ssrLoadModule('/src/mocks/recovery.ts');
   const request={original_site_id:'R01',original_arrival_utc:'2026-11-20T00:00:00Z',study_duration_hours:24,delay_hours:168,min_continuous_overlap_minutes:180,candidate_site_ids:['R01','R04'],horizon_model:'GEOMETRIC',observer_height_m:1,step_minutes:5,future_search_days:1};
@@ -24,3 +24,16 @@ try {
   assert.equal(bounded.recommended_outcome,'NO_QUALIFYING_OPTION_WITHIN_SEARCH');
   console.log('Six synthetic outcomes: UTC shifts, window consistency, missing features and shared grid IDs passed.');
 } finally {await server.close();}
+
+const mathServer=await createServer({server:{middlewareMode:true,hmr:false,ws:false},optimizeDeps:{noDiscovery:true},appType:'custom'});
+try {
+ const {moonXYZ,moonLatLon,measurementColor}=await mathServer.ssrLoadModule('/src/moonMath.ts');
+ for(const [lat,lon,expected] of [[0,0,[1,0,0]],[0,90,[0,0,-1]],[90,0,[0,1,0]],[-90,0,[0,-1,0]]]){
+  moonXYZ(lat,lon).forEach((x,i)=>assert(Math.abs(x-expected[i])<1e-12));
+ }
+ for(const lat of [-89.9,-45,0,45,89.9])for(const lon of [0,45,180,270,359.99]){
+  const back=moonLatLon(...moonXYZ(lat,lon));assert(Math.abs(back[0]-lat)<1e-8);assert(Math.abs(back[1]-lon)<1e-8);
+ }
+ assert.equal(measurementColor(null,0,90),'#52606c');
+ console.log('Moon coordinate registration, wrap and unknown-color checks passed');
+}finally{await mathServer.close();}

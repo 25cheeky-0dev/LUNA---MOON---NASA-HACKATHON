@@ -28,7 +28,7 @@ export interface Cell { cell_id: string; grid_version: string; cell_size_m: numb
 export interface Grid { site_id: SiteID; cells: Cell[]; center_cell_id: string; projection: { wkt_or_proj: string } }
 export interface Feature { cell_id: string; scenario_id: string; feature_names: string[]; values: (number | null)[]; quality: string; observation_point_type?: string; site_id?: SiteID }
 export interface Features { points: Feature[]; reference_points?: Feature[]; scatter_axes: { x: string; y: string; z: string } }
-export const BASE = (import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000').replace(/\/$/, '');
+export const BASE = (import.meta.env.VITE_API_BASE_URL ?? (import.meta.env.PROD ? '' : 'http://localhost:8000')).replace(/\/$/, '');
 export const MOCK = import.meta.env.VITE_USE_MOCKS === 'true';
 export async function api<T>(path: string, body?: unknown): Promise<T> {
   const response = await fetch(BASE + path, { method: body === undefined ? 'GET' : 'POST', headers: body === undefined ? {} : { 'Content-Type': 'application/json' }, body: body === undefined ? undefined : JSON.stringify(body), signal: AbortSignal.timeout(240000) });

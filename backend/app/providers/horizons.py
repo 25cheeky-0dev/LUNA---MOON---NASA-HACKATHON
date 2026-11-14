@@ -62,7 +62,10 @@ def parse_response(raw, target, site):
     records = {}
     previous = None
     for row in csv.reader(table.strip().splitlines()):
-        stamp = datetime.strptime(row[0].strip(), '%Y-%b-%d %H:%M:%S').replace(tzinfo=timezone.utc)
+        timestamp = row[0].strip()
+        # Horizons can omit seconds even when TIME_DIGITS requests them.
+        time_format = '%Y-%b-%d %H:%M' if timestamp.count(':') == 1 else '%Y-%b-%d %H:%M:%S'
+        stamp = datetime.strptime(timestamp, time_format).replace(tzinfo=timezone.utc)
         if previous is not None and stamp <= previous:
             raise ValueError('Nonmonotonic or duplicate UTC records')
         previous = stamp

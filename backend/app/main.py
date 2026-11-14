@@ -28,6 +28,8 @@ app.add_middleware(CORSMiddleware, allow_origins=os.getenv('CORS_ORIGINS','http:
 app.include_router(celestial_router)
 app.include_router(science_router)
 app.include_router(global_router)
+from app.navigation import router as navigation_router
+app.include_router(navigation_router)
 provider = Horizons()
 scenarios = OrderedDict()
 requests_gate = asyncio.Semaphore(2)
@@ -177,3 +179,8 @@ async def export(scenario_id: str):
     for r in scenario['visibility_series']:
         writer.writerow([r['timestamp_utc']]+[(r[t] or {}).get(k,'') for t in ('sun','earth') for k in ('az_deg','el_deg')]+[r['status']])
     return Response(output.getvalue(),media_type='text/csv',headers={'Content-Disposition':f'attachment; filename="{scenario_id}.csv"'})
+
+# Optional single-service production package. API routes stay ahead of the SPA.
+if os.getenv('WISPR_STATIC_DIR'):
+    from fastapi.staticfiles import StaticFiles
+    app.mount('/', StaticFiles(directory=os.environ['WISPR_STATIC_DIR'], html=True), name='ui')

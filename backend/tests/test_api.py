@@ -74,3 +74,13 @@ def test_manual_language_fallback_and_search(monkeypatch):
 
 def test_ambiguous_observer_rejected():
     assert client.post('/api/v1/ephemeris',json=dict(site_id='R01',lat_deg=-89,lon_east_deg=10,start_utc='2026-11-20T00:00:00Z',end_utc='2026-11-21T00:00:00Z')).status_code==422
+
+
+@pytest.mark.parametrize('arrival,future', [('2100-12-28T00:00:00Z',0), ('2100-12-20T00:00:00Z',7)])
+def test_recovery_rejects_out_of_range_derived_dates(monkeypatch,arrival,future):
+    async def forbidden(*a,**k):
+        raise AssertionError('Invalid ranges must be rejected before source requests')
+    monkeypatch.setattr(provider,'ephemeris',forbidden)
+    response=client.post('/api/v1/recovery',json=REQUEST|{'original_arrival_utc':arrival,'future_search_days':future})
+    assert response.status_code==422
+    assert response.json()['error_code']=='INVALID_REQUEST'
