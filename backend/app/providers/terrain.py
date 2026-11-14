@@ -28,7 +28,8 @@ def load(site_id):
             raise ValueError('Unverified source, units or lunar frame')
         if not manifest.get('vertical_reference'):
             raise ValueError('Missing vertical reference')
-        digest = hashlib.file_digest(open(path, 'rb'), 'sha256').hexdigest()
+        with open(path, 'rb') as stream:
+            digest = hashlib.file_digest(stream, 'sha256').hexdigest()
         if digest != manifest['raw_sha256']:
             raise ValueError('Raster hash mismatch')
         crs = CRS.from_user_input(raster.crs)

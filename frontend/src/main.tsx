@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { api, BASE, MOCK, type Cell, type Features, type Grid, type MissionRequest, type Outcome, type Recovery, type Scenario } from './lib/api';
-import { fixture } from './mocks/recovery';
+import { fixture, fixtureGrids, fixtureFeatures } from './mocks/recovery';
 import './style.css';
 
 const outcomes: globalThis.Record<Outcome,string> = {KEEP_SITE_AFTER_DELAY:'Keep the original site',SWITCH_SITE_AFTER_DELAY:'Switch the delayed site',POSTPONE_AND_REEVALUATE:'Postpone and reevaluate',NO_QUALIFYING_OPTION_WITHIN_SEARCH:'No qualifying option in this search',INSUFFICIENT_DATA:'More data is needed',NEEDS_INPUT:'Complete the mission inputs'};
@@ -78,9 +78,9 @@ function App() {
   const [selected,setSelected]=useState(0),[time,setTime]=useState(0),[grids,setGrids]=useState<Grid[]>([]),[cell,setCell]=useState<Cell|null>(null),[features,setFeatures]=useState<Features|null>(null),[featureError,setFeatureError]=useState(''),[gridError,setGridError]=useState('');
   const [text,setText]=useState(''),[interpretBusy,setInterpretBusy]=useState(false),[mockOutcome,setMockOutcome]=useState<Outcome>('KEEP_SITE_AFTER_DELAY');
   const all=result?[...result.original_scenarios,...result.delayed_scenarios,...(result.future_scenarios??[])]:[],scenario=all[selected];
-  useEffect(()=>{let active=true;api('/health').then(()=>{if(active)setConnected(true);}).catch(()=>{if(active)setConnected(false);});
+  useEffect(()=>{if(MOCK){setGrids(fixtureGrids);return;}let active=true;api('/health').then(()=>{if(active)setConnected(true);}).catch(()=>{if(active)setConnected(false);});
     Promise.all([api<Grid>('/api/v1/grid?site_id=R01'),api<Grid>('/api/v1/grid?site_id=R04')]).then(g=>{if(active)setGrids(g);}).catch(e=>{if(active)setGridError(String(e));});return()=>{active=false;};},[]);
-  useEffect(()=>{setTime(0);setFeatures(null);setFeatureError('');let active=true;if(scenario&&!MOCK)api<Features>(`/api/v1/features?scenario_id=${scenario.scenario_id}`).then(f=>{if(active)setFeatures(f);}).catch(e=>{if(active)setFeatureError(String(e));});return()=>{active=false;};},[scenario?.scenario_id]);
+  useEffect(()=>{setTime(0);setFeatures(null);setFeatureError('');let active=true;if(scenario){if(MOCK)setFeatures(fixtureFeatures(scenario));else api<Features>(`/api/v1/features?scenario_id=${scenario.scenario_id}`).then(f=>{if(active)setFeatures(f);}).catch(e=>{if(active)setFeatureError(String(e));});}return()=>{active=false;};},[scenario?.scenario_id]);
   function update<K extends keyof MissionRequest>(key:K,value:MissionRequest[K]) { setRequest(r=>({...r,[key]:value})); }
   async function run(e:React.FormEvent) {e.preventDefault();setBusy(true);setError('');setResult(null);setSelected(0);try{setResult(MOCK?fixture(request,mockOutcome):await api<Recovery>('/api/v1/recovery',request));}catch(e){setError(e instanceof Error?e.message:String(e));}finally{setBusy(false);}}
   async function translate(){setInterpretBusy(true);setError('');try{const r=await api<{parsed_requirements:MissionRequest;provider_used:string;validation_errors:string[]}>('/api/v1/interpret',{text,provider_preference:'auto'});if(r.provider_used==='unavailable')setError(r.validation_errors.join('; '));else setRequest(r.parsed_requirements);}catch(e){setError(String(e));}finally{setInterpretBusy(false);}}

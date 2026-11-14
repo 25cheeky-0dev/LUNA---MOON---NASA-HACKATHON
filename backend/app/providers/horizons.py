@@ -45,7 +45,7 @@ def parse_response(raw, target, site):
         raise ValueError('Target header mismatch')
     if not re.search(r'Center body name:\s*Moon\s*\(301\)', header) or 'AIRLESS' not in header:
         raise ValueError('Not a lunar airless observer table')
-    match = re.search(r'Center geodetic\s*:\s*([\d.+-]+),\s*([\d.+-]+),\s*([\d.+-]+)', header)
+    match = re.search(r'Center geodetic\s*:\s*([\d.eE+-]+),\s*([\d.eE+-]+),\s*([\d.eE+-]+)', header)
     if not match:
         raise ValueError('Missing observer coordinates')
     lon, lat, height = map(float, match.groups())

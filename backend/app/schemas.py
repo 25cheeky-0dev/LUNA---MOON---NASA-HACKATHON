@@ -159,3 +159,89 @@ class RecoveryResponse(BaseModel):
     recommended_outcome: Literal['KEEP_SITE_AFTER_DELAY', 'SWITCH_SITE_AFTER_DELAY', 'POSTPONE_AND_REEVALUATE', 'NO_QUALIFYING_OPTION_WITHIN_SEARCH', 'INSUFFICIENT_DATA', 'NEEDS_INPUT']
     recommended_site_id: str | None
     recommended_window: VisibilityWindow | None
+
+
+class ScientificResponse(BaseModel):
+    model_config = ConfigDict(extra='allow')
+    api_version: str
+    backend_version: str
+    computed_at_utc: str
+    source_type: str
+    calculation_mode: str
+    data_quality: str
+    limitations: list[str]
+    provenance: dict
+
+
+class Site(BaseModel):
+    model_config = ConfigDict(extra='allow')
+    site_id: SiteID
+    name: str
+    lat_deg: float
+    lon_east_deg: float
+    reference_region_not_certified_site: bool
+    dem_site_id: str
+    dem_status: str
+
+
+class SitesResponse(ScientificResponse):
+    sites: list[Site]
+
+
+class Cell(BaseModel):
+    cell_id: str
+    grid_version: str
+    cell_size_m: int
+    center_lat_deg: float
+    center_lon_east_deg: float
+    center_x_m: float
+    center_y_m: float
+    boundary_lonlat_east: list[list[float]]
+    raster_coverage: str
+    ephemeris_status: str
+    observations_represent_center_only: bool
+
+
+class GridResponse(ScientificResponse):
+    site_id: SiteID
+    grid_version: str
+    projection: dict
+    cells: list[Cell]
+    center_cell_id: str
+
+
+class EphemerisResponse(ScientificResponse):
+    site: dict
+    records: list[SyncedRecord]
+    observed_start_utc: str
+    observed_end_utc: str
+    missing_intervals: list[dict]
+    step_minutes: int
+
+
+class AnalyzeResponse(ScientificResponse):
+    scenarios: list[ScenarioSummary]
+
+
+class PhysicalFeatures(BaseModel):
+    model_config = ConfigDict(extra='allow')
+    cell_id: str
+    scenario_id: str
+    feature_names: list[str]
+    values: list[float | None]
+    normalized_values: list[float] | None
+    normalization_version: str
+    available_features: list[str]
+    missing_features: list[str]
+    similarity_eligible: bool
+    quality: str
+
+
+class FeaturesResponse(ScientificResponse):
+    scenario_id: str
+    feature_definitions: list[dict]
+    points: list[PhysicalFeatures]
+    reference_points: list[PhysicalFeatures]
+    scatter_axes: dict
+    normalization: dict
+    ignored_or_missing: list[dict]

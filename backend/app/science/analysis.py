@@ -1,15 +1,17 @@
 import hashlib
 import json
-from app.metadata import iso, metadata
+import os
+from app.metadata import iso, metadata, parse
 from app.schemas import EphemerisRequest
-from app.providers.horizons import SourceUnavailable
+from app.providers.horizons import SourceUnavailable, PARSER_VERSION
 from app.science.windows import summarize
 
 
 async def analyze_scenario(site_id, start, end, request, provider):
     identity = dict(site_id=site_id, start=iso(start), end=iso(end), horizon_model=request.horizon_model,
         observer_height_m=request.observer_height_m, step_minutes=request.step_minutes,
-        minimum=request.min_continuous_overlap_minutes, engine='linear-v1')
+        minimum=request.min_continuous_overlap_minutes, engine='linear-v1', parser=PARSER_VERSION,
+        reference_height_km=float(os.getenv('HORIZONS_REFERENCE_HEIGHT_KM','0')))
     scenario_id = hashlib.sha256(json.dumps(identity, sort_keys=True).encode()).hexdigest()[:24]
     base = dict(scenario_id=scenario_id, site_id=site_id, arrival_utc=iso(start), end_utc=iso(end),
         horizon_model=request.horizon_model, observer_height_m=request.observer_height_m,
@@ -20,12 +22,14 @@ async def analyze_scenario(site_id, start, end, request, provider):
         try:
             eph = await provider.ephemeris(EphemerisRequest(site_id=site_id, start_utc=start, end_utc=end,
                 step_minutes=request.step_minutes, observer_height_m=request.observer_height_m))
+            source_identity = dict(identity, raw_sha256=eph['provenance'].get('raw_sha256',[]))
+            base['scenario_id'] = hashlib.sha256(json.dumps(source_identity,sort_keys=True).encode()).hexdigest()[:24]
             meta = {k: eph[k] for k in metadata()}
             summary = summarize(eph['records'], start, end, request.step_minutes, request.min_continuous_overlap_minutes)
             result = dict(**base, **summary, visibility_series=eph['records'], **meta)
             result['data_quality'] = 'MODEL_ESTIMATE' if summary['qualifying_status'] != 'UNKNOWN' else 'PARTIAL'
             result['time_to_first_qualifying_minutes'] = (
-                (__import__('datetime').datetime.fromisoformat(summary['earliest_qualifying_window']['start_utc'].replace('Z','+00:00'))-start).total_seconds()/60
+                (parse(summary['earliest_qualifying_window']['start_utc'])-start).total_seconds()/60
                 if summary['earliest_qualifying_window'] else None)
             return result
         except SourceUnavailable as exc:

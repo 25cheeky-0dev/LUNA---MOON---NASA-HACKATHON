@@ -29,6 +29,7 @@ cd backend
 .\.venv\Scripts\python -m scripts.check_horizons
 cd ../frontend
 npm run build
+npm test
 ```
 
 The smoke test uses an explicitly labeled development example (2026-11-20, R01/R04, 24 hours). Select a mission date yourself. Raw JPL JSON and query metadata are cached under `backend/data/raw`; synthetic data never enters that cache. Offline synthetic UI mode: set `VITE_USE_MOCKS=true` in `frontend/.env.local`. Live errors never switch to synthetic data.
@@ -38,3 +39,5 @@ The smoke test uses an explicitly labeled development example (2026-11-20, R01/R
 Terrain requires real local GeoTIFFs and explicit vertical-reference metadata. See `backend/README.md`. No raster is bundled. The UI provides a complete manual form. Optional language interpretation requires server-side Groq/NVIDIA environment variables; it is unavailable without them and cannot invent dates. Do not put keys in frontend env files.
 
 See `docs/IMPLEMENTATION_PLAN.md`, `docs/STATUS.md`, and the supplied frozen `docs/contracts/API_V1.md` for scope, evidence and limitations.
+
+`backend/uv.lock` and `frontend/package-lock.json` record resolved dependencies. With uv installed, `uv sync --project backend --extra test --extra terrain --locked` reproduces the backend environment. `npm ci` reproduces the frontend install.

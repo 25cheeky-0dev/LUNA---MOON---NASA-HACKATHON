@@ -10,3 +10,4 @@ dist/
 backend/data/
 !backend/data/.gitkeep
 .tools/
+*.tsbuildinfo

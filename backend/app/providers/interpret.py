@@ -1,5 +1,6 @@
 import json
 import os
+import re
 import ssl
 import httpx
 import truststore
@@ -37,6 +38,16 @@ async def interpret(request):
             # A future-search horizon must appear as structured user input; language
             # interpretation alone never grants a larger search budget.
             requirements.future_search_days = 0
+            # Require literal evidence for critical extracted fields. More flexible
+            # date language can be entered through the reviewed manual UTC form.
+            if requirements.original_arrival_utc and requirements.original_arrival_utc.strftime('%Y-%m-%d') not in request.text:
+                requirements.original_arrival_utc = None
+            if requirements.original_site_id and not re.search(r'\b'+requirements.original_site_id+r'\b',request.text,re.IGNORECASE):
+                requirements.original_site_id = None
+            if requirements.study_duration_hours is not None:
+                number = f'{requirements.study_duration_hours:g}'
+                if not re.search(r'\b'+re.escape(number)+r'\s*(?:h\b|hours?\b)',request.text,re.IGNORECASE):
+                    requirements.study_duration_hours = None
             missing = [n for n in ('original_site_id','original_arrival_utc','study_duration_hours') if getattr(requirements,n) is None]
             return dict(parsed_requirements=requirements.model_dump(mode='json'),needs_clarification=bool(missing),missing_fields=missing,
                 provider_used=provider,validation_errors=[],**metadata(limitations=['Language interpretation is untrusted; review structured fields before calculation.']))

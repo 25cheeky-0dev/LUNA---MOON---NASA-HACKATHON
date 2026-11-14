@@ -9,7 +9,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, Response
 from app.catalog import SITES, SITE_WARNING
 from app.metadata import metadata, aggregate
-from app.schemas import RecoveryRequest, RecoveryResponse, AnalyzeRequest, EphemerisRequest
+from app.schemas import (RecoveryRequest, RecoveryResponse, AnalyzeRequest, EphemerisRequest,
+    SitesResponse, GridResponse, EphemerisResponse, AnalyzeResponse, FeaturesResponse)
 from app.providers.horizons import Horizons, SourceUnavailable
 from app.providers import terrain
 from app.providers.interpret import InterpretRequest, interpret
@@ -48,12 +49,12 @@ async def health():
         mode='GEOMETRIC',warnings=[SITE_WARNING]+([] if provider.live else ['Live Horizons has not succeeded in this process.']))
 
 
-@app.get('/api/v1/sites')
+@app.get('/api/v1/sites',response_model=SitesResponse)
 async def sites():
     return dict(sites=list(SITES.values()),**metadata(limitations=[SITE_WARNING]))
 
 
-@app.post('/api/v1/ephemeris')
+@app.post('/api/v1/ephemeris',response_model=EphemerisResponse)
 async def ephemeris(request: EphemerisRequest):
     try:
         return await provider.ephemeris(request)
@@ -69,7 +70,7 @@ async def analyze_one(site,start,end,request):
     return result
 
 
-@app.post('/api/v1/analyze')
+@app.post('/api/v1/analyze',response_model=AnalyzeResponse)
 async def analyze(request: AnalyzeRequest):
     async with requests_gate:
         results = [await analyze_one(s,request.start_utc,request.end_utc,request) for s in request.site_ids]
@@ -83,7 +84,7 @@ async def recovery(request: RecoveryRequest):
         return await recover_mission(request,analyze_one)
 
 
-@app.get('/api/v1/grid')
+@app.get('/api/v1/grid',response_model=GridResponse)
 async def grid(site_id: str=Query('R01',pattern='^R0[14]$'),radius_cells: int=Query(1,ge=1,le=1),cell_size_m: int=Query(1000,ge=1000,le=1000)):
     return neighborhood(site_id,radius_cells)
 
@@ -97,7 +98,7 @@ async def grid_cell(cell_id: str):
     return dict(cell=cell,static_features=dict(elevation_m=None,slope_deg=None,data_status='UNVERIFIED'),available_scenarios=[],**metadata())
 
 
-@app.get('/api/v1/features')
+@app.get('/api/v1/features',response_model=FeaturesResponse)
 async def features(scenario_id: str):
     if scenario_id not in scenarios:
         raise HTTPException(404,detail='Scenario absent or expired; run analysis again')
