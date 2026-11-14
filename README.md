@@ -1,5 +1,7 @@
 # WISPR — lunar visibility and schedule recovery
 
+The global lunar extension is documented in [GLOBAL_API_HANDOFF.md](docs/GLOBAL_API_HANDOFF.md), with actual source coverage and limitations in [GLOBAL_DATA_PROVENANCE.md](docs/GLOBAL_DATA_PROVENANCE.md) and executed verification in [GLOBAL_VALIDATION_REPORT.md](docs/GLOBAL_VALIDATION_REPORT.md).
+
 Compare Sun and direct-to-Earth visibility at two lunar reference regions before and after a seven-day delay. Results are sampled geometric estimates, not landing certification, electrical power, radio link budgets or spacecraft commands.
 
 ## Run locally (PowerShell)

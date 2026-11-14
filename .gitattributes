@@ -2,3 +2,4 @@
 /backend/celestial_engine/fixtures/*.json -text
 /backend/celestial_engine/outputs/*.json -text
 /backend/celestial_engine/outputs/*.parquet binary
+/docs/evidence/global/source_manifests/** binary
