@@ -10,10 +10,15 @@ from functools import lru_cache
 from fastapi import APIRouter, HTTPException, Query
 from pydantic import Field
 
+from . import contracts as contract
 from .engine import AnalysisEngine, Scenario
 from .grid import Filters, Registry
 
-router = APIRouter(prefix="/api/v1/science", tags=["unified-science"])
+router = APIRouter(
+    prefix="/api/v1/science",
+    tags=["unified-science"],
+    responses={code: {"model": contract.ScienceError} for code in (404, 422, 429)},
+)
 _gate = threading.BoundedSemaphore(2)
 _lock = threading.Lock()
 scenarios = OrderedDict()
@@ -31,7 +36,7 @@ def dataset(dataset_id):
         raise HTTPException(404, "Dataset not found; configure WISPR_GRID_DIR") from exc
 
 
-@router.get("/datasets")
+@router.get("/datasets", response_model=contract.DatasetPage, response_model_exclude_unset=True)
 def datasets(offset: int = Query(0, ge=0), limit: int = Query(100, ge=1, le=1000)):
     registry = engine().registry
     values = sorted(registry.datasets.values(), key=lambda d: d.metadata.dataset_id)
@@ -48,7 +53,11 @@ def datasets(offset: int = Query(0, ge=0), limit: int = Query(100, ge=1, le=1000
     )
 
 
-@router.get("/datasets/{dataset_id}/cells")
+@router.get(
+    "/datasets/{dataset_id}/cells",
+    response_model=contract.CellPage,
+    response_model_exclude_unset=True,
+)
 def cells(dataset_id: str, offset: int = Query(0, ge=0), limit: int = Query(100, ge=1, le=1000)):
     d = dataset(dataset_id)
     return dict(
@@ -59,7 +68,11 @@ def cells(dataset_id: str, offset: int = Query(0, ge=0), limit: int = Query(100,
     )
 
 
-@router.get("/datasets/{dataset_id}/cells/{cell_id}")
+@router.get(
+    "/datasets/{dataset_id}/cells/{cell_id}",
+    response_model=contract.CellResponse,
+    response_model_exclude_unset=True,
+)
 def cell(dataset_id: str, cell_id: str):
     d = dataset(dataset_id)
     try:
@@ -72,7 +85,11 @@ def cell(dataset_id: str, cell_id: str):
         raise HTTPException(404, "Unknown cell ID") from exc
 
 
-@router.get("/datasets/{dataset_id}/vectors/{cell_id}")
+@router.get(
+    "/datasets/{dataset_id}/vectors/{cell_id}",
+    response_model=contract.StaticVector,
+    response_model_exclude_unset=True,
+)
 def vector(dataset_id: str, cell_id: str):
     try:
         return dataset(dataset_id).vector(cell_id)
@@ -80,7 +97,11 @@ def vector(dataset_id: str, cell_id: str):
         raise HTTPException(404, "Unknown cell ID") from exc
 
 
-@router.get("/datasets/{dataset_id}/similarity/{cell_id}")
+@router.get(
+    "/datasets/{dataset_id}/similarity/{cell_id}",
+    response_model=contract.SimilarityResponse,
+    response_model_exclude_unset=True,
+)
 def similarity(dataset_id: str, cell_id: str, limit: int = Query(20, ge=1, le=1000)):
     try:
         return dataset(dataset_id).similarity(cell_id, limit)
@@ -90,7 +111,11 @@ def similarity(dataset_id: str, cell_id: str, limit: int = Query(20, ge=1, le=10
         raise HTTPException(422, str(exc)) from exc
 
 
-@router.post("/datasets/{dataset_id}/candidates")
+@router.post(
+    "/datasets/{dataset_id}/candidates",
+    response_model=contract.CandidateResponse,
+    response_model_exclude_unset=True,
+)
 def candidates(dataset_id: str, filters: Filters):
     selected, _ = dataset(dataset_id).select(filters)
     return dict(
@@ -138,17 +163,21 @@ def evaluate(request):
         _gate.release()
 
 
-@router.post("/analysis")
+@router.post(
+    "/analysis", response_model=contract.AnalysisResponse, response_model_exclude_unset=True
+)
 def analysis(request: Scenario):
     return evaluate(request)
 
 
-@router.post("/celestial")
+@router.post(
+    "/celestial", response_model=contract.AnalysisResponse, response_model_exclude_unset=True
+)
 def celestial(request: Scenario):
     return evaluate(request)
 
 
-@router.post("/ranking")
+@router.post("/ranking", response_model=contract.RankingResponse, response_model_exclude_unset=True)
 def ranking(request: Scenario):
     result = evaluate(request)
     return dict(
@@ -159,7 +188,11 @@ def ranking(request: Scenario):
     )
 
 
-@router.get("/scenarios/{scenario_id}")
+@router.get(
+    "/scenarios/{scenario_id}",
+    response_model=contract.ScenarioResponse,
+    response_model_exclude_unset=True,
+)
 def dynamic_vectors(scenario_id: str):
     with _lock:
         result = scenarios.get(scenario_id)
@@ -180,7 +213,7 @@ class DelayRequest(Scenario):
     original_cell_id: str = Field(min_length=1)
 
 
-@router.post("/delay")
+@router.post("/delay", response_model=contract.DelayResponse, response_model_exclude_unset=True)
 def delay(request: DelayRequest):
     if not _gate.acquire(blocking=False):
         raise HTTPException(429, "Scientific analysis capacity reached; retry later")

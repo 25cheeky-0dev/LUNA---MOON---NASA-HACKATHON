@@ -38,6 +38,17 @@ def remember(scenario):
         scenarios.popitem(last=False)
 
 
+@app.exception_handler(HTTPException)
+async def http_error(request, exc):
+    if request.url.path.startswith('/api/v1/science/'):
+        codes = {404: 'NOT_FOUND', 422: 'INVALID_SCIENTIFIC_REQUEST', 429: 'CAPACITY_EXCEEDED'}
+        return JSONResponse(status_code=exc.status_code, headers=exc.headers,
+            content=dict(error_code=codes.get(exc.status_code, 'HTTP_ERROR'),
+                         detail=exc.detail, missing_fields=[]))
+    from fastapi.exception_handlers import http_exception_handler
+    return await http_exception_handler(request, exc)
+
+
 @app.exception_handler(RequestValidationError)
 async def validation_error(request, exc):
     return JSONResponse(status_code=422,content=dict(error_code='INVALID_REQUEST',detail=[{'loc':list(e['loc']),'msg':e['msg']} for e in exc.errors()],missing_fields=[]))
