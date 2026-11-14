@@ -1,0 +1,103 @@
+{
+  "catalog_version": "0.1.0",
+  "status": "architecture_candidates_except_uploaded_site04",
+  "policy": "Do not assume projection, vertical datum, pixel units, quality, or frame for a new raster. Verify metadata and detached PDS labels before ingestion. Do not interpolate across gaps or silently switch sources.",
+  "priority_and_coverage": [
+    {
+      "source_id": "NASA_PGDA_SITE04_LOLA_LDEM_5MPP",
+      "status": "downloaded_and_verified",
+      "role": "grounded_high_resolution_local_shackleton_rim",
+      "region": "Shackleton Rim Site04 footprint, near lunar south pole",
+      "coverage": {"projected_bounds_xmin_ymin_xmax_ymax_m": [-9000.0,-15000.0,7000.0,1000.0], "width_pixels":3200,"height_pixels":3200},
+      "native_pixel_spacing": {"value":5,"unit":"metres"},
+      "projection": "Moon south polar stereographic",
+      "body_fixed_frame": "MOON_ME / DE421 per NASA PGDA documentation",
+      "elevation_units": "metres",
+      "vertical_reference": "NASA PGDA Site04 LDEM height; equivalence with other DEMs or Horizons not assumed",
+      "quality": {"available_separate_products":["LDEC spot count","total Z uncertainty (m)","slope uncertainty (degrees)","slope raster (degrees)"],"downloaded_in_this_package":[]},
+      "source_url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site04/Site04_final_adj_5mpp_surf.tif",
+      "documentation_url": "https://pgda.gsfc.nasa.gov/products/78",
+      "coverage_status": "Site04 only; not full lunar south pole",
+      "source_quality_warning": "Interpolated elevation map; 5m pixels are not independent laser footprints"
+    },
+    {
+      "source_id": "NASA_PGDA_SOUTH_80S_20MPP_LOLA_LDEM",
+      "status": "catalog_only_not_downloaded",
+      "role": "south_polar_region",
+      "region": "South of 80 degrees south latitude",
+      "native_pixel_spacing": {"value":20,"unit":"metres"},
+      "projection": "Moon south polar stereographic",
+      "body_fixed_frame": "MOON_ME / DE421 per PGDA page",
+      "elevation_units": "metres",
+      "vertical_reference": "Verify product metadata / reference radius before joining",
+      "quality": {"available_separate_products":["LOLA count","effective resolution","error / uncertainty or roughness ancillary as documented"],"downloaded_in_this_package":[]},
+      "documentation_url": "https://pgda.gsfc.nasa.gov/products/90",
+      "coverage_status": "Catalog states 80S to south pole; inspect exact raster footprint"
+    },
+    {
+      "source_id": "NASA_PGDA_NORTH_80N_20MPP_LOLA_LDEM",
+      "status": "catalog_only_not_downloaded",
+      "role": "north_polar_region",
+      "region": "North of 80 degrees north latitude",
+      "native_pixel_spacing": {"value":20,"unit":"metres"},
+      "projection": "Moon north polar stereographic",
+      "body_fixed_frame": "MOON_ME / DE421 per PGDA page",
+      "elevation_units": "metres",
+      "vertical_reference": "Verify product metadata / reference radius before joining",
+      "quality": {"available_separate_products":["LOLA count","effective resolution","error / uncertainty or roughness ancillary as documented"],"downloaded_in_this_package":[]},
+      "documentation_url": "https://pgda.gsfc.nasa.gov/products/98",
+      "coverage_status": "Catalog states 80N to north pole; inspect exact raster footprint"
+    },
+    {
+      "source_id": "NASA_LOLA_GDR_POLAR_INTERMEDIATE",
+      "status": "catalog_only_not_downloaded",
+      "role": "high_latitude_transition_band_60_to_80_degrees",
+      "region": "North/south 60 to 80 degrees latitude where fine local polar map coverage varies",
+      "native_pixel_spacing": {"options":[30,60,100],"unit":"metres","note":"Choose only after checking official geographic coverage and quality"},
+      "projection": "Respective north/south polar stereographic, never the Site04 polar projection globally",
+      "body_fixed_frame": "Verify exact PDS label for each product",
+      "elevation_units": "PDS scaling/offset must be parsed; do not assume stored DN is already metres",
+      "vertical_reference": "Verify PDS reference sphere, scalar offset, and dataset label",
+      "quality": {"available_separate_products":["count","slope/roughness when provided"],"downloaded_in_this_package":[]},
+      "documentation_url": "https://ode.rsl.wustl.edu/mercury/pagehelp/Content/Missions_Instruments/Lunar%20Reconnaissance%20Orbiter%20%28LRO%29/LOLA/GDR/GDRDEM.htm",
+      "coverage_status": "Candidate levels; exact pixel size and coverage must be verified from each archive file"
+    },
+    {
+      "source_id": "NASA_SLDEM2015_TILED_512PPD",
+      "status": "catalog_only_not_downloaded",
+      "role": "equatorial_and_midlatitude_detail",
+      "region": "60S to 60N latitude",
+      "native_pixel_spacing": {"value":512,"unit":"pixels_per_degree","approx_equator_metres_per_latitude_pixel":59.2,"note":"Physical dimensions change with latitude and direction; these are angular raster pixels"},
+      "projection": "Longitude/latitude gridded lunar raster; process using a latitude-aware metric method or explicitly reproject to documented regional metric CRS",
+      "body_fixed_frame": "Confirm product PDS labels and compatibility with Moon ME/DE421",
+      "elevation_units": "Check the PDS scaling and units; convert once with documented logic",
+      "vertical_reference": "Lunar reference sphere 1737400 m as documented by USGS; verify labels before comparing sources",
+      "quality": {"typical_vertical_accuracy_m":[3,4],"note":"Published typical accuracy is not a per-cell uncertainty estimate","available_separate_products":["SLDEM2015 quality map where available"],"downloaded_in_this_package":[]},
+      "documentation_url": "https://pgda.gsfc.nasa.gov/products/54",
+      "coverage_status": "No coverage beyond 60 degrees north/south; do not extrapolate"
+    },
+    {
+      "source_id": "NASA_LOLA_GDR_GLOBAL_COARSE",
+      "status": "catalog_only_not_downloaded",
+      "role": "global_fallback_and_source_comparison",
+      "region": "Global lunar extent",
+      "native_pixel_spacing": {"value":128,"unit":"pixels_per_degree","approx_equator_metres_per_latitude_pixel":236.9,"note":"Angular grid; longitude-direction metres per pixel varies with latitude"},
+      "projection": "Lunar equidistant cylindrical / geographic gridded format (product-dependent)",
+      "body_fixed_frame": "Verify PDS label, including frame and coordinate conventions",
+      "elevation_units": "Decode PDS digital-number scaling before using elevations",
+      "vertical_reference": "Confirm the PDS offset / reference sphere (commonly 1737400 m)",
+      "quality": {"available_separate_products":["LOLA counts","slope/roughness ancillary depending on product"],"downloaded_in_this_package":[]},
+      "documentation_url": "https://ode.rsl.wustl.edu/mercury/pagehelp/Content/Missions_Instruments/Lunar%20Reconnaissance%20Orbiter%20%28LRO%29/LOLA/GDR/GDRDEM.htm",
+      "coverage_status": "Suitable as coarse backstop, not comparable to fine 5m local samples"
+    }
+  ],
+  "ingestion_rules": [
+    "Only the first source has been downloaded and verified. Others are design candidates, not available inputs.",
+    "One tile has one chosen primary terrain source and an explicit source_id; record any secondary source rather than blending silently.",
+    "Store the source's complete affine/CRS or PDS map projection parameters and vertical datum plus native file hash.",
+    "No interpolation of NoData unless a later named version explicitly allows it; missing stays missing.",
+    "Record seams when source_id, provenance, resolution, effective resolution, quality or frame changes.",
+    "No source supplies independent laser shot heights for every DEM pixel. Retain raw source raster, labels, and quality layers.",
+    "Before global metric slope calculations, handle angular lat/lon rasters with a local lunar metric conversion or geodesic horizontal distances. Never use metres-per-degree as a constant globally."
+  ]
+}

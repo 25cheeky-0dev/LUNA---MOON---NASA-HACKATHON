@@ -1,0 +1,53 @@
+{
+  "result": "PASS",
+  "prototype_only": true,
+  "source_sha256_verified": true,
+  "tiles_generated": 4,
+  "cells_checked": 400,
+  "valid_native_source_pixels": 160000,
+  "native_source_pixels_per_cell": 400,
+  "source_native_pixel_halo": 1,
+  "directed_neighbor_links": 1520,
+  "grid_cell_ids_unique": true,
+  "elevation_slope_roughness_match_baseline": true,
+  "frozen_baseline": {
+    "legacy_grid_row_count": 400,
+    "legacy_frozen_fields_verified": [
+      "x_m",
+      "y_m",
+      "latitude",
+      "longitude",
+      "elevation_m",
+      "slope_deg",
+      "slope_min_deg",
+      "slope_max_deg",
+      "roughness_m",
+      "xmin_m",
+      "ymin_m",
+      "xmax_m",
+      "ymax_m"
+    ],
+    "max_abs_difference_by_field": {
+      "x_m": 0.0,
+      "y_m": 0.0,
+      "latitude": 0.0,
+      "longitude": 0.0,
+      "elevation_m": 0.0,
+      "slope_deg": 0.0,
+      "slope_min_deg": 0.0,
+      "slope_max_deg": 0.0,
+      "roughness_m": 0.0,
+      "xmin_m": 0.0,
+      "ymin_m": 0.0,
+      "xmax_m": 0.0,
+      "ymax_m": 0.0
+    },
+    "legacy_neighbor_lists_identical": true
+  },
+  "not_verified": [
+    "Global multi-projection tiling not generated",
+    "North-polar, equatorial, and large-area DEMs not downloaded",
+    "NASA Site04 LDEC and uncertainty rasters absent",
+    "JPL Horizons observer height compatibility not assessed"
+  ]
+}
