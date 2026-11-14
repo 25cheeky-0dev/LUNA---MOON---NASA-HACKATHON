@@ -41,3 +41,7 @@ Terrain requires real local GeoTIFFs and explicit vertical-reference metadata. S
 See `docs/IMPLEMENTATION_PLAN.md`, `docs/STATUS.md`, and the supplied frozen `docs/contracts/API_V1.md` for scope, evidence and limitations.
 
 `backend/uv.lock` and `frontend/package-lock.json` record resolved dependencies. With uv installed, `uv sync --project backend --extra test --extra terrain --locked` reproduces the backend environment. `npm ci` reproduces the frontend install.
+
+The integrated scientific grid/vector/scenario backend is documented in [UNIFIED_ANALYSIS_HANDOFF.md](docs/UNIFIED_ANALYSIS_HANDOFF.md), including real V3/NASA validation, API usage and the V4 ingestion contract.
+
+Frontend integration and final stabilization evidence: [FRONTEND_INTEGRATION_HANDOFF.md](docs/FRONTEND_INTEGRATION_HANDOFF.md) and [SCIENTIFIC_BACKEND_VERIFICATION.md](docs/SCIENTIFIC_BACKEND_VERIFICATION.md).
