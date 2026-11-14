@@ -1,0 +1,127 @@
+{
+  "prototype_only": true,
+  "full_moon_coverage": false,
+  "grid_scope": "NASA Site04 original frozen 2x2 km / 400 cells",
+  "tile_processing_version": "3.0.0",
+  "legacy_grid_version": "2.0.0",
+  "source_sha256": "38ff70dbdf2f066c2cfa94a646c3a59d653ce7f6b4528b15fc1b43ee397ce758",
+  "tiles": [
+    {
+      "tile_id": "SITE04_TILE_R00_C00",
+      "core_window": {
+        "column_offset": 1500,
+        "row_offset": 1500,
+        "width": 200,
+        "height": 200
+      },
+      "transform_6": [
+        5.0,
+        0.0,
+        -1500.0,
+        0.0,
+        -5.0,
+        -6500.0
+      ],
+      "projected_bounds_m": [
+        -1500.0,
+        -7500.0,
+        -500.0,
+        -6500.0
+      ],
+      "cell_count": 100,
+      "missing_core_source_pixels": 0,
+      "source_change_at_tile_edge": "none_identified_in_site04_dem_only",
+      "resolution_change_at_tile_edge": "none_identified_in_site04_dem_only"
+    },
+    {
+      "tile_id": "SITE04_TILE_R00_C01",
+      "core_window": {
+        "column_offset": 1700,
+        "row_offset": 1500,
+        "width": 200,
+        "height": 200
+      },
+      "transform_6": [
+        5.0,
+        0.0,
+        -500.0,
+        0.0,
+        -5.0,
+        -6500.0
+      ],
+      "projected_bounds_m": [
+        -500.0,
+        -7500.0,
+        500.0,
+        -6500.0
+      ],
+      "cell_count": 100,
+      "missing_core_source_pixels": 0,
+      "source_change_at_tile_edge": "none_identified_in_site04_dem_only",
+      "resolution_change_at_tile_edge": "none_identified_in_site04_dem_only"
+    },
+    {
+      "tile_id": "SITE04_TILE_R01_C00",
+      "core_window": {
+        "column_offset": 1500,
+        "row_offset": 1700,
+        "width": 200,
+        "height": 200
+      },
+      "transform_6": [
+        5.0,
+        0.0,
+        -1500.0,
+        0.0,
+        -5.0,
+        -7500.0
+      ],
+      "projected_bounds_m": [
+        -1500.0,
+        -8500.0,
+        -500.0,
+        -7500.0
+      ],
+      "cell_count": 100,
+      "missing_core_source_pixels": 0,
+      "source_change_at_tile_edge": "none_identified_in_site04_dem_only",
+      "resolution_change_at_tile_edge": "none_identified_in_site04_dem_only"
+    },
+    {
+      "tile_id": "SITE04_TILE_R01_C01",
+      "core_window": {
+        "column_offset": 1700,
+        "row_offset": 1700,
+        "width": 200,
+        "height": 200
+      },
+      "transform_6": [
+        5.0,
+        0.0,
+        -500.0,
+        0.0,
+        -5.0,
+        -7500.0
+      ],
+      "projected_bounds_m": [
+        -500.0,
+        -8500.0,
+        500.0,
+        -7500.0
+      ],
+      "cell_count": 100,
+      "missing_core_source_pixels": 0,
+      "source_change_at_tile_edge": "none_identified_in_site04_dem_only",
+      "resolution_change_at_tile_edge": "none_identified_in_site04_dem_only"
+    }
+  ],
+  "quality_and_gaps": {
+    "site04_elevation_dem": "complete in test window",
+    "lola_count_raster": "not downloaded",
+    "z_uncertainty_raster": "not downloaded",
+    "northern_and_equatorial_dem_sources": "cataloged only; not downloaded",
+    "other_global_tiles": "not generated"
+  },
+  "original_dem_unchanged": true,
+  "freeze_note": "All SITE04_R###_C### IDs, center coordinates, elevations and neighbors match existing V2 output."
+}

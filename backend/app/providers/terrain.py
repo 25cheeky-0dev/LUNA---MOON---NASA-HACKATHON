@@ -91,10 +91,10 @@ def curvature_angle(distance_m, delta_height_m):
     return math.degrees(math.atan2((RADIUS+delta_height_m)*math.cos(theta)-RADIUS, (RADIUS+delta_height_m)*math.sin(theta)))
 
 
-def horizon(site_id, observer_height_m, az_step_deg):
+def horizon(site_id, observer_height_m, az_step_deg, *, observer_site=None, raster_loader=None):
     import numpy as np
     from pyproj import Geod, CRS, Transformer
-    raster, manifest, x, y, digest = load(site_id)
+    raster, manifest, x, y, digest = raster_loader() if raster_loader is not None else load(site_id)
     with raster:
         origin = next(raster.sample([(x,y)], masked=True))[0]
         if np.ma.is_masked(origin) or not np.isfinite(origin):
@@ -102,7 +102,7 @@ def horizon(site_id, observer_height_m, az_step_deg):
         crs = CRS.from_user_input(raster.crs)
         transformer = Transformer.from_crs(crs.geodetic_crs, crs, always_xy=True)
         geod = Geod(a=RADIUS,b=RADIUS)
-        site = SITES[site_id]
+        site = observer_site if observer_site is not None else SITES[site_id]
         spacing = max(10., max(raster.res))
         max_radius = min(20000., math.hypot(raster.bounds.right-raster.bounds.left, raster.bounds.top-raster.bounds.bottom))
         distances = np.arange(spacing,max_radius,spacing)

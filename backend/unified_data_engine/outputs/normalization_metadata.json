@@ -1,0 +1,31 @@
+{
+  "version": "terrain-population-zscore-v1",
+  "method": "population z-score: (value-mean)/std",
+  "dataset_id": "site04-v3",
+  "dataset_version": "3.0.0",
+  "manifest_sha256": "51e1437f06155f128923f51386fc45588342bce395c256c7b44ad5ca1423ba42",
+  "fit_cell_count": 400,
+  "dataset_snapshot_sha256": "a5f6e096f94ca422f58b21a0e158ace1bb9c58fd47824401680b8dd6bfd8698f",
+  "feature_names": [
+    "elevation_m",
+    "slope_deg",
+    "roughness_m"
+  ],
+  "units": [
+    "m",
+    "degree",
+    "m"
+  ],
+  "means": [
+    467.22962062738515,
+    32.049092576407524,
+    0.8457788868433294
+  ],
+  "population_std": [
+    361.42747080878746,
+    1.1283985705541353,
+    0.2175643915699201
+  ],
+  "constant_feature_policy": "zero for observed constant features; missing values remain null",
+  "fit_sha256": "b9f6ccc2bb832152d5dcd416ac29c7fe5eb155610f60265fb697b676322a2d0c"
+}

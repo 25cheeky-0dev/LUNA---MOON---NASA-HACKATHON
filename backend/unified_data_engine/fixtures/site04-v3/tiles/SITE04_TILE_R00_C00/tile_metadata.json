@@ -1,0 +1,75 @@
+{
+  "tile_id": "SITE04_TILE_R00_C00",
+  "existing_grid_version": "2.0.0",
+  "tile_processing_version": "3.0.0",
+  "body": "Moon",
+  "frame": "MOON_ME / DE421",
+  "projected_crs_wkt": "PROJCS[\"unnamed\",GEOGCS[\"unnamed ellipse\",DATUM[\"unknown\",SPHEROID[\"unnamed\",1737400,0]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]]],PROJECTION[\"Polar_Stereographic\"],PARAMETER[\"latitude_of_origin\",-90],PARAMETER[\"central_meridian\",0],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1],AXIS[\"Easting\",NORTH],AXIS[\"Northing\",NORTH]]",
+  "source_file": "Site04_final_adj_5mpp_surf.tif",
+  "source_sha256": "38ff70dbdf2f066c2cfa94a646c3a59d653ce7f6b4528b15fc1b43ee397ce758",
+  "source_pixel_size_m": [
+    5.0,
+    5.0
+  ],
+  "source_nodata": "nan",
+  "source_affine_6": [
+    5.0,
+    0.0,
+    -9000.0,
+    0.0,
+    -5.0,
+    1000.0
+  ],
+  "source_pixel_core_window": {
+    "column_offset": 1500,
+    "row_offset": 1500,
+    "width": 200,
+    "height": 200
+  },
+  "source_pixel_halo_window": {
+    "column_offset": 1499,
+    "row_offset": 1499,
+    "width": 202,
+    "height": 202
+  },
+  "core_transform_6": [
+    5.0,
+    0.0,
+    -1500.0,
+    0.0,
+    -5.0,
+    -6500.0
+  ],
+  "halo_transform_6": [
+    5.0,
+    0.0,
+    -1505.0,
+    0.0,
+    -5.0,
+    -6495.0
+  ],
+  "projected_bounds_xmin_ymin_xmax_ymax_m": [
+    -1500.0,
+    -7500.0,
+    -500.0,
+    -6500.0
+  ],
+  "cell_id_scheme": "SITE04_R{row:03d}_C{column:03d} (FROZEN)",
+  "cell_count": 100,
+  "native_pixel_count": 40000,
+  "source_valid_pixel_count": 40000,
+  "slope_valid_pixel_count": 40000,
+  "pixel_halo_width": 1,
+  "source_change_at_tile_edge": "none_identified_in_site04_dem_only",
+  "resolution_change_at_tile_edge": "none_identified_in_site04_dem_only",
+  "missing_core_source_pixels": 0,
+  "latitude_convention": "Moon planetocentric degrees; south negative",
+  "longitude_convention": "Moon east-positive degrees [-180,180)",
+  "vertical_reference": "NASA PGDA Site04 LDEM height in m; JPL Horizons observer-height compatibility unvalidated",
+  "quality_layers": {
+    "lola_count": "not supplied",
+    "total_z_uncertainty": "not supplied",
+    "slope_uncertainty": "not supplied"
+  },
+  "data_policy": "Original GeoTIFF is preserved byte-for-byte; masks and cells are derived, not raw shot measurements."
+}
