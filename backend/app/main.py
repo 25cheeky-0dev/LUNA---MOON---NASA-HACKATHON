@@ -9,6 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, Response
 from celestial_engine.api import router as celestial_router
 from app.integration.api import router as science_router
+from lunar_global.api import router as global_router
 from app.catalog import SITES, SITE_WARNING
 from app.metadata import metadata, aggregate
 from app.schemas import (RecoveryRequest, RecoveryResponse, AnalyzeRequest, EphemerisRequest,
@@ -26,6 +27,7 @@ app.add_middleware(CORSMiddleware, allow_origins=os.getenv('CORS_ORIGINS','http:
     allow_methods=['GET','POST'],allow_headers=['Content-Type'])
 app.include_router(celestial_router)
 app.include_router(science_router)
+app.include_router(global_router)
 provider = Horizons()
 scenarios = OrderedDict()
 requests_gate = asyncio.Semaphore(2)

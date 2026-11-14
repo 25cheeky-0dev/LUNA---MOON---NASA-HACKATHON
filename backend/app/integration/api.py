@@ -133,11 +133,11 @@ def candidates(dataset_id: str, filters: Filters):
     )
 
 
-def evaluate(request):
+def evaluate(request, analysis_engine=None):
     if not _gate.acquire(blocking=False):
         raise HTTPException(429, "Scientific analysis capacity reached; retry later")
     try:
-        result = engine().analyze(request)
+        result = (analysis_engine or engine()).analyze(request)
         key = hashlib.sha256(
             json.dumps(
                 dict(

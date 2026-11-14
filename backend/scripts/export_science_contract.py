@@ -67,7 +67,10 @@ def artifacts():
         for method, operation in operations.items():
             if method not in ("get", "post"):
                 continue
-            response = operation["responses"]["200"]["content"]["application/json"]["schema"]
+            content = operation["responses"]["200"].get("content", {})
+            if "application/json" not in content:
+                continue  # Binary visualization response; no JSON TypeScript model.
+            response = content["application/json"]["schema"]
             request = (
                 operation.get("requestBody", {})
                 .get("content", {})

@@ -220,6 +220,107 @@
         "title": "CandidateResponse",
         "type": "object"
       },
+      "Candidates": {
+        "additionalProperties": false,
+        "properties": {
+          "bbox": {
+            "anyOf": [
+              {
+                "maxItems": 4,
+                "minItems": 4,
+                "prefixItems": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ],
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bbox"
+          },
+          "limit": {
+            "default": 100,
+            "maximum": 1000.0,
+            "minimum": 1.0,
+            "title": "Limit",
+            "type": "integer"
+          },
+          "maximum_roughness_m": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Maximum Roughness M"
+          },
+          "maximum_slope_deg": {
+            "anyOf": [
+              {
+                "maximum": 90.0,
+                "minimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Maximum Slope Deg"
+          },
+          "minimum_coverage": {
+            "default": 1,
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Minimum Coverage",
+            "type": "number"
+          },
+          "nside": {
+            "default": 128,
+            "enum": [
+              64,
+              128,
+              256
+            ],
+            "title": "Nside",
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "maximum": 4000000.0,
+            "minimum": 0.0,
+            "title": "Offset",
+            "type": "integer"
+          },
+          "quality": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Quality"
+          }
+        },
+        "title": "Candidates",
+        "type": "object"
+      },
       "CelestialProvenance": {
         "additionalProperties": true,
         "properties": {
@@ -677,6 +778,57 @@
           "boundary_uncertainty_seconds"
         ],
         "title": "Crossing",
+        "type": "object"
+      },
+      "Crosswalk": {
+        "additionalProperties": false,
+        "properties": {
+          "boundary_step": {
+            "title": "Boundary Step",
+            "type": "integer"
+          },
+          "convergence_delta": {
+            "title": "Convergence Delta",
+            "type": "number"
+          },
+          "dataset_id": {
+            "title": "Dataset Id",
+            "type": "string"
+          },
+          "dataset_sha256": {
+            "title": "Dataset Sha256",
+            "type": "string"
+          },
+          "global_cell_id": {
+            "title": "Global Cell Id",
+            "type": "string"
+          },
+          "method": {
+            "title": "Method",
+            "type": "string"
+          },
+          "overlap_fraction": {
+            "maximum": 1.000001,
+            "minimum": 0.0,
+            "title": "Overlap Fraction",
+            "type": "number"
+          },
+          "regional_cell_id": {
+            "title": "Regional Cell Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "dataset_id",
+          "regional_cell_id",
+          "global_cell_id",
+          "overlap_fraction",
+          "method",
+          "boundary_step",
+          "convergence_delta",
+          "dataset_sha256"
+        ],
+        "title": "Crosswalk",
         "type": "object"
       },
       "DatasetInfo": {
@@ -1408,6 +1560,53 @@
         "title": "ExcludedCell",
         "type": "object"
       },
+      "FeatureResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "cell_id": {
+            "title": "Cell Id",
+            "type": "string"
+          },
+          "measurements": {
+            "items": {
+              "$ref": "#/components/schemas/TerrainMeasurement"
+            },
+            "title": "Measurements",
+            "type": "array"
+          },
+          "missing_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Missing Reason"
+          },
+          "provenance": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provenance"
+          }
+        },
+        "required": [
+          "cell_id",
+          "measurements",
+          "missing_reason",
+          "provenance"
+        ],
+        "title": "FeatureResponse",
+        "type": "object"
+      },
       "FeaturesResponse": {
         "additionalProperties": true,
         "properties": {
@@ -1629,6 +1828,362 @@
           }
         },
         "title": "Filters",
+        "type": "object"
+      },
+      "GlobalCell": {
+        "additionalProperties": false,
+        "properties": {
+          "area_m2": {
+            "title": "Area M2",
+            "type": "number"
+          },
+          "boundary_lonlat": {
+            "items": {
+              "maxItems": 2,
+              "minItems": 2,
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "type": "array"
+            },
+            "title": "Boundary Lonlat",
+            "type": "array"
+          },
+          "boundary_method": {
+            "title": "Boundary Method",
+            "type": "string"
+          },
+          "boundary_step": {
+            "title": "Boundary Step",
+            "type": "integer"
+          },
+          "cell_id": {
+            "title": "Cell Id",
+            "type": "string"
+          },
+          "children": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Children",
+            "type": "array"
+          },
+          "coordinate_frame": {
+            "title": "Coordinate Frame",
+            "type": "string"
+          },
+          "data_available": {
+            "title": "Data Available",
+            "type": "boolean"
+          },
+          "grid_version": {
+            "title": "Grid Version",
+            "type": "string"
+          },
+          "latitude_deg": {
+            "title": "Latitude Deg",
+            "type": "number"
+          },
+          "latitude_type": {
+            "title": "Latitude Type",
+            "type": "string"
+          },
+          "level": {
+            "title": "Level",
+            "type": "integer"
+          },
+          "longitude_convention": {
+            "title": "Longitude Convention",
+            "type": "string"
+          },
+          "longitude_deg": {
+            "title": "Longitude Deg",
+            "type": "number"
+          },
+          "neighbors": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Neighbors",
+            "type": "array"
+          },
+          "nside": {
+            "title": "Nside",
+            "type": "integer"
+          },
+          "parent_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parent Id"
+          },
+          "pixel": {
+            "title": "Pixel",
+            "type": "integer"
+          },
+          "reference_radius_m": {
+            "title": "Reference Radius M",
+            "type": "number"
+          },
+          "regional_overlaps": {
+            "items": {
+              "$ref": "#/components/schemas/Crosswalk"
+            },
+            "title": "Regional Overlaps",
+            "type": "array"
+          },
+          "source_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Source Ids",
+            "type": "array"
+          }
+        },
+        "required": [
+          "cell_id",
+          "nside",
+          "pixel",
+          "level",
+          "latitude_deg",
+          "longitude_deg",
+          "parent_id",
+          "children",
+          "neighbors",
+          "area_m2",
+          "boundary_lonlat",
+          "boundary_step",
+          "boundary_method",
+          "coordinate_frame",
+          "reference_radius_m",
+          "latitude_type",
+          "longitude_convention",
+          "grid_version",
+          "source_ids",
+          "data_available",
+          "regional_overlaps"
+        ],
+        "title": "GlobalCell",
+        "type": "object"
+      },
+      "GlobalDelay": {
+        "additionalProperties": false,
+        "properties": {
+          "altitude_km": {
+            "default": 0,
+            "maximum": 100.0,
+            "minimum": -10.0,
+            "title": "Altitude Km",
+            "type": "number"
+          },
+          "altitude_reference": {
+            "const": "horizons_lunar_reference",
+            "default": "horizons_lunar_reference",
+            "title": "Altitude Reference",
+            "type": "string"
+          },
+          "cell_ids": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 16,
+            "minItems": 1,
+            "title": "Cell Ids",
+            "type": "array"
+          },
+          "dataset_id": {
+            "default": "GLOBAL_SELECTED",
+            "title": "Dataset Id",
+            "type": "string"
+          },
+          "end_utc": {
+            "format": "date-time",
+            "title": "End Utc",
+            "type": "string"
+          },
+          "filters": {
+            "$ref": "#/components/schemas/Filters"
+          },
+          "horizon_model": {
+            "default": "GEOMETRIC_IDEAL",
+            "enum": [
+              "GEOMETRIC_IDEAL",
+              "TERRAIN_PARTIAL"
+            ],
+            "title": "Horizon Model",
+            "type": "string"
+          },
+          "latitude_deg": {
+            "default": 0,
+            "title": "Latitude Deg",
+            "type": "number"
+          },
+          "longitude_east_deg": {
+            "default": 0,
+            "title": "Longitude East Deg",
+            "type": "number"
+          },
+          "minimum_shared_minutes": {
+            "minimum": 0.0,
+            "title": "Minimum Shared Minutes",
+            "type": "number"
+          },
+          "observer_height_m": {
+            "default": 1,
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Observer Height M",
+            "type": "number"
+          },
+          "original_cell_id": {
+            "minLength": 1,
+            "title": "Original Cell Id",
+            "type": "string"
+          },
+          "start_utc": {
+            "format": "date-time",
+            "title": "Start Utc",
+            "type": "string"
+          },
+          "step_minutes": {
+            "default": 60,
+            "maximum": 1440.0,
+            "minimum": 1.0,
+            "title": "Step Minutes",
+            "type": "integer"
+          },
+          "terrain_site_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Terrain Site Id"
+          }
+        },
+        "required": [
+          "start_utc",
+          "end_utc",
+          "cell_ids",
+          "minimum_shared_minutes",
+          "original_cell_id"
+        ],
+        "title": "GlobalDelay",
+        "type": "object"
+      },
+      "GlobalScenario": {
+        "additionalProperties": false,
+        "properties": {
+          "altitude_km": {
+            "default": 0,
+            "maximum": 100.0,
+            "minimum": -10.0,
+            "title": "Altitude Km",
+            "type": "number"
+          },
+          "altitude_reference": {
+            "const": "horizons_lunar_reference",
+            "default": "horizons_lunar_reference",
+            "title": "Altitude Reference",
+            "type": "string"
+          },
+          "cell_ids": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 16,
+            "minItems": 1,
+            "title": "Cell Ids",
+            "type": "array"
+          },
+          "dataset_id": {
+            "default": "GLOBAL_SELECTED",
+            "title": "Dataset Id",
+            "type": "string"
+          },
+          "end_utc": {
+            "format": "date-time",
+            "title": "End Utc",
+            "type": "string"
+          },
+          "filters": {
+            "$ref": "#/components/schemas/Filters"
+          },
+          "horizon_model": {
+            "default": "GEOMETRIC_IDEAL",
+            "enum": [
+              "GEOMETRIC_IDEAL",
+              "TERRAIN_PARTIAL"
+            ],
+            "title": "Horizon Model",
+            "type": "string"
+          },
+          "latitude_deg": {
+            "default": 0,
+            "title": "Latitude Deg",
+            "type": "number"
+          },
+          "longitude_east_deg": {
+            "default": 0,
+            "title": "Longitude East Deg",
+            "type": "number"
+          },
+          "minimum_shared_minutes": {
+            "minimum": 0.0,
+            "title": "Minimum Shared Minutes",
+            "type": "number"
+          },
+          "observer_height_m": {
+            "default": 1,
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Observer Height M",
+            "type": "number"
+          },
+          "start_utc": {
+            "format": "date-time",
+            "title": "Start Utc",
+            "type": "string"
+          },
+          "step_minutes": {
+            "default": 60,
+            "maximum": 1440.0,
+            "minimum": 1.0,
+            "title": "Step Minutes",
+            "type": "integer"
+          },
+          "terrain_site_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Terrain Site Id"
+          }
+        },
+        "required": [
+          "start_utc",
+          "end_utc",
+          "cell_ids",
+          "minimum_shared_minutes"
+        ],
+        "title": "GlobalScenario",
         "type": "object"
       },
       "GridResponse": {
@@ -2342,6 +2897,39 @@
         "title": "Observer",
         "type": "object"
       },
+      "Page": {
+        "additionalProperties": false,
+        "properties": {
+          "limit": {
+            "title": "Limit",
+            "type": "integer"
+          },
+          "offset": {
+            "title": "Offset",
+            "type": "integer"
+          },
+          "records": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Records",
+            "type": "array"
+          },
+          "scope": {
+            "title": "Scope",
+            "type": "string"
+          }
+        },
+        "required": [
+          "records",
+          "offset",
+          "limit",
+          "scope"
+        ],
+        "title": "Page",
+        "type": "object"
+      },
       "PhysicalFeatures": {
         "additionalProperties": true,
         "properties": {
@@ -2762,6 +3350,29 @@
         "title": "RecoveryResponse",
         "type": "object"
       },
+      "Retrieval": {
+        "additionalProperties": false,
+        "properties": {
+          "maximum_results": {
+            "default": 10,
+            "maximum": 50.0,
+            "minimum": 1.0,
+            "title": "Maximum Results",
+            "type": "integer"
+          },
+          "question": {
+            "maxLength": 2000,
+            "minLength": 1,
+            "title": "Question",
+            "type": "string"
+          }
+        },
+        "required": [
+          "question"
+        ],
+        "title": "Retrieval",
+        "type": "object"
+      },
       "Scenario": {
         "additionalProperties": false,
         "properties": {
@@ -3066,6 +3677,44 @@
         "title": "ScienceError",
         "type": "object"
       },
+      "Similarity": {
+        "additionalProperties": false,
+        "properties": {
+          "accept_unknown_uncertainty": {
+            "default": false,
+            "title": "Accept Unknown Uncertainty",
+            "type": "boolean"
+          },
+          "feature_set": {
+            "const": "terrain-v1",
+            "default": "terrain-v1",
+            "title": "Feature Set",
+            "type": "string"
+          },
+          "maximum_results": {
+            "default": 10,
+            "maximum": 100.0,
+            "minimum": 1.0,
+            "title": "Maximum Results",
+            "type": "integer"
+          },
+          "normalization_version": {
+            "const": "physical-scales-v1",
+            "default": "physical-scales-v1",
+            "title": "Normalization Version",
+            "type": "string"
+          },
+          "reference_cell_id": {
+            "title": "Reference Cell Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "reference_cell_id"
+        ],
+        "title": "Similarity",
+        "type": "object"
+      },
       "SimilarityMatch": {
         "additionalProperties": false,
         "properties": {
@@ -3083,37 +3732,6 @@
           "normalized_euclidean_distance"
         ],
         "title": "SimilarityMatch",
-        "type": "object"
-      },
-      "SimilarityResponse": {
-        "additionalProperties": false,
-        "properties": {
-          "comparability": {
-            "$ref": "#/components/schemas/TerrainEvidence"
-          },
-          "matches": {
-            "items": {
-              "$ref": "#/components/schemas/SimilarityMatch"
-            },
-            "title": "Matches",
-            "type": "array"
-          },
-          "metric": {
-            "title": "Metric",
-            "type": "string"
-          },
-          "reference_cell_id": {
-            "title": "Reference Cell Id",
-            "type": "string"
-          }
-        },
-        "required": [
-          "reference_cell_id",
-          "metric",
-          "comparability",
-          "matches"
-        ],
-        "title": "SimilarityResponse",
         "type": "object"
       },
       "Site": {
@@ -3658,6 +4276,305 @@
         "title": "TerrainEvidence",
         "type": "object"
       },
+      "TerrainMeasurement": {
+        "additionalProperties": false,
+        "properties": {
+          "cell_id": {
+            "title": "Cell Id",
+            "type": "string"
+          },
+          "effective_analysis_resolution_m": {
+            "title": "Effective Analysis Resolution M",
+            "type": "number"
+          },
+          "elevation_m": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Elevation M"
+          },
+          "elevation_m_coverage": {
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Elevation M Coverage",
+            "type": "number"
+          },
+          "elevation_variability_m": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Elevation Variability M"
+          },
+          "latitude_deg": {
+            "title": "Latitude Deg",
+            "type": "number"
+          },
+          "longitude_deg": {
+            "title": "Longitude Deg",
+            "type": "number"
+          },
+          "method": {
+            "title": "Method",
+            "type": "string"
+          },
+          "missing_mask": {
+            "items": {
+              "type": "boolean"
+            },
+            "maxItems": 3,
+            "minItems": 3,
+            "title": "Missing Mask",
+            "type": "array"
+          },
+          "native_resolution_m": {
+            "title": "Native Resolution M",
+            "type": "number"
+          },
+          "normalized_values": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "maxItems": 3,
+            "minItems": 3,
+            "title": "Normalized Values",
+            "type": "array"
+          },
+          "pixel": {
+            "title": "Pixel",
+            "type": "integer"
+          },
+          "quality": {
+            "title": "Quality",
+            "type": "string"
+          },
+          "raw_values": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "maxItems": 3,
+            "minItems": 3,
+            "title": "Raw Values",
+            "type": "array"
+          },
+          "roughness_m": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Roughness M"
+          },
+          "roughness_m_coverage": {
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Roughness M Coverage",
+            "type": "number"
+          },
+          "sampled_maximum_elevation_m": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sampled Maximum Elevation M"
+          },
+          "sampled_minimum_elevation_m": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sampled Minimum Elevation M"
+          },
+          "sampled_source_pixel_count": {
+            "title": "Sampled Source Pixel Count",
+            "type": "number"
+          },
+          "slope_deg": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Slope Deg"
+          },
+          "slope_deg_coverage": {
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Slope Deg Coverage",
+            "type": "number"
+          },
+          "snapshot_id": {
+            "title": "Snapshot Id",
+            "type": "string"
+          },
+          "source_id": {
+            "title": "Source Id",
+            "type": "string"
+          },
+          "uncertainty": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Uncertainty"
+          }
+        },
+        "required": [
+          "cell_id",
+          "pixel",
+          "latitude_deg",
+          "longitude_deg",
+          "source_id",
+          "snapshot_id",
+          "quality",
+          "native_resolution_m",
+          "effective_analysis_resolution_m",
+          "method",
+          "uncertainty",
+          "elevation_m",
+          "slope_deg",
+          "roughness_m",
+          "elevation_m_coverage",
+          "slope_deg_coverage",
+          "roughness_m_coverage",
+          "sampled_minimum_elevation_m",
+          "sampled_maximum_elevation_m",
+          "elevation_variability_m",
+          "sampled_source_pixel_count",
+          "raw_values",
+          "normalized_values",
+          "missing_mask"
+        ],
+        "title": "TerrainMeasurement",
+        "type": "object"
+      },
+      "TerrainPage": {
+        "additionalProperties": false,
+        "properties": {
+          "limit": {
+            "title": "Limit",
+            "type": "integer"
+          },
+          "offset": {
+            "title": "Offset",
+            "type": "integer"
+          },
+          "records": {
+            "items": {
+              "$ref": "#/components/schemas/TerrainMeasurement"
+            },
+            "title": "Records",
+            "type": "array"
+          },
+          "scope": {
+            "title": "Scope",
+            "type": "string"
+          }
+        },
+        "required": [
+          "records",
+          "offset",
+          "limit",
+          "scope"
+        ],
+        "title": "TerrainPage",
+        "type": "object"
+      },
+      "ThermalResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "measurements": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Measurements",
+            "type": "array"
+          },
+          "missing_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Missing Reason"
+          },
+          "source": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source"
+          },
+          "support": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Support"
+          }
+        },
+        "required": [
+          "measurements",
+          "missing_reason",
+          "source"
+        ],
+        "title": "ThermalResponse",
+        "type": "object"
+      },
       "UnknownInterval": {
         "additionalProperties": false,
         "properties": {
@@ -3720,6 +4637,33 @@
           "type"
         ],
         "title": "ValidationError",
+        "type": "object"
+      },
+      "VectorResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "cell_id": {
+            "title": "Cell Id",
+            "type": "string"
+          },
+          "vector": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Vector"
+          }
+        },
+        "required": [
+          "cell_id",
+          "vector"
+        ],
+        "title": "VectorResponse",
         "type": "object"
       },
       "VisibilityMetrics": {
@@ -3927,6 +4871,37 @@
           "metrics"
         ],
         "title": "WindowSummary",
+        "type": "object"
+      },
+      "app__integration__contracts__SimilarityResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "comparability": {
+            "$ref": "#/components/schemas/TerrainEvidence"
+          },
+          "matches": {
+            "items": {
+              "$ref": "#/components/schemas/SimilarityMatch"
+            },
+            "title": "Matches",
+            "type": "array"
+          },
+          "metric": {
+            "title": "Metric",
+            "type": "string"
+          },
+          "reference_cell_id": {
+            "title": "Reference Cell Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "reference_cell_id",
+          "metric",
+          "comparability",
+          "matches"
+        ],
+        "title": "SimilarityResponse",
         "type": "object"
       },
       "app__integration__contracts__VisibilityWindow": {
@@ -4402,6 +5377,44 @@
           "end_utc"
         ],
         "title": "EphemerisRequest",
+        "type": "object"
+      },
+      "lunar_global__api__SimilarityResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "matches": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Matches",
+            "type": "array"
+          },
+          "normalization_version": {
+            "title": "Normalization Version",
+            "type": "string"
+          },
+          "reference_cell_id": {
+            "title": "Reference Cell Id",
+            "type": "string"
+          },
+          "scope": {
+            "title": "Scope",
+            "type": "string"
+          },
+          "snapshot_id": {
+            "title": "Snapshot Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "reference_cell_id",
+          "matches",
+          "normalization_version",
+          "snapshot_id",
+          "scope"
+        ],
+        "title": "SimilarityResponse",
         "type": "object"
       }
     }
@@ -5270,7 +6283,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SimilarityResponse"
+                  "$ref": "#/components/schemas/app__integration__contracts__SimilarityResponse"
                 }
               }
             },
@@ -5442,6 +6455,1476 @@
         "summary": "Delay",
         "tags": [
           "unified-science"
+        ]
+      }
+    },
+    "/api/v1/science/global/analysis": {
+      "post": {
+        "operationId": "analysis_api_v1_science_global_analysis_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GlobalScenario"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalysisResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Analysis",
+        "tags": [
+          "global-science"
+        ]
+      }
+    },
+    "/api/v1/science/global/candidates": {
+      "post": {
+        "operationId": "candidates_api_v1_science_global_candidates_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Candidates"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TerrainPage"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Candidates",
+        "tags": [
+          "global-science"
+        ]
+      }
+    },
+    "/api/v1/science/global/cells": {
+      "get": {
+        "operationId": "cells_api_v1_science_global_cells_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "nside",
+            "required": false,
+            "schema": {
+              "default": 128,
+              "title": "Nside",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "maximum": 4000000,
+              "minimum": 0,
+              "title": "Offset",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 100,
+              "maximum": 1000,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Cells",
+        "tags": [
+          "global-science"
+        ]
+      }
+    },
+    "/api/v1/science/global/cells/lookup": {
+      "get": {
+        "operationId": "locate_api_v1_science_global_cells_lookup_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "latitude",
+            "required": true,
+            "schema": {
+              "maximum": 90,
+              "minimum": -90,
+              "title": "Latitude",
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "longitude",
+            "required": true,
+            "schema": {
+              "title": "Longitude",
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "nside",
+            "required": false,
+            "schema": {
+              "default": 128,
+              "title": "Nside",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalCell"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Locate",
+        "tags": [
+          "global-science"
+        ]
+      }
+    },
+    "/api/v1/science/global/cells/{cell_id}": {
+      "get": {
+        "operationId": "cell_api_v1_science_global_cells__cell_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cell_id",
+            "required": true,
+            "schema": {
+              "title": "Cell Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalCell"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Cell",
+        "tags": [
+          "global-science"
+        ]
+      }
+    },
+    "/api/v1/science/global/cells/{cell_id}/features": {
+      "get": {
+        "operationId": "features_api_v1_science_global_cells__cell_id__features_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cell_id",
+            "required": true,
+            "schema": {
+              "title": "Cell Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeatureResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Features",
+        "tags": [
+          "global-science"
+        ]
+      }
+    },
+    "/api/v1/science/global/cells/{cell_id}/neighbors": {
+      "get": {
+        "operationId": "neighbors_api_v1_science_global_cells__cell_id__neighbors_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cell_id",
+            "required": true,
+            "schema": {
+              "title": "Cell Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Neighbors",
+        "tags": [
+          "global-science"
+        ]
+      }
+    },
+    "/api/v1/science/global/cells/{cell_id}/sources": {
+      "get": {
+        "operationId": "sources_api_v1_science_global_cells__cell_id__sources_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cell_id",
+            "required": true,
+            "schema": {
+              "title": "Cell Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Sources",
+        "tags": [
+          "global-science"
+        ]
+      }
+    },
+    "/api/v1/science/global/cells/{cell_id}/thermal": {
+      "get": {
+        "operationId": "thermal_api_v1_science_global_cells__cell_id__thermal_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cell_id",
+            "required": true,
+            "schema": {
+              "title": "Cell Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "local_time_bin",
+            "required": true,
+            "schema": {
+              "maximum": 95,
+              "minimum": 0,
+              "title": "Local Time Bin",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ThermalResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Thermal",
+        "tags": [
+          "global-science"
+        ]
+      }
+    },
+    "/api/v1/science/global/cells/{cell_id}/vectors": {
+      "get": {
+        "operationId": "vectors_api_v1_science_global_cells__cell_id__vectors_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cell_id",
+            "required": true,
+            "schema": {
+              "title": "Cell Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VectorResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Vectors",
+        "tags": [
+          "global-science"
+        ]
+      }
+    },
+    "/api/v1/science/global/delay": {
+      "post": {
+        "operationId": "delay_api_v1_science_global_delay_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GlobalDelay"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DelayResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Delay",
+        "tags": [
+          "global-science"
+        ]
+      }
+    },
+    "/api/v1/science/global/layer-images/{layer_id}": {
+      "get": {
+        "operationId": "layer_image_api_v1_science_global_layer_images__layer_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "layer_id",
+            "required": true,
+            "schema": {
+              "title": "Layer Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Layer Image",
+        "tags": [
+          "global-science"
+        ]
+      }
+    },
+    "/api/v1/science/global/layers": {
+      "get": {
+        "operationId": "layers_api_v1_science_global_layers_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Layers",
+        "tags": [
+          "global-science"
+        ]
+      }
+    },
+    "/api/v1/science/global/levels": {
+      "get": {
+        "operationId": "levels_api_v1_science_global_levels_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Levels",
+        "tags": [
+          "global-science"
+        ]
+      }
+    },
+    "/api/v1/science/global/optional-sources": {
+      "get": {
+        "operationId": "optional_sources_api_v1_science_global_optional_sources_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Optional Sources",
+        "tags": [
+          "global-science"
+        ]
+      }
+    },
+    "/api/v1/science/global/regional/{regional_cell_id}/crosswalk": {
+      "get": {
+        "operationId": "regional_crosswalk_api_v1_science_global_regional__regional_cell_id__crosswalk_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "regional_cell_id",
+            "required": true,
+            "schema": {
+              "title": "Regional Cell Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "nside",
+            "required": false,
+            "schema": {
+              "default": 128,
+              "title": "Nside",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Regional Crosswalk",
+        "tags": [
+          "global-science"
+        ]
+      }
+    },
+    "/api/v1/science/global/retrieve": {
+      "post": {
+        "operationId": "retrieve_api_v1_science_global_retrieve_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Retrieval"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Retrieve",
+        "tags": [
+          "global-science"
+        ]
+      }
+    },
+    "/api/v1/science/global/similarity": {
+      "post": {
+        "operationId": "similarity_api_v1_science_global_similarity_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Similarity"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/lunar_global__api__SimilarityResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Similarity",
+        "tags": [
+          "global-science"
+        ]
+      }
+    },
+    "/api/v1/science/global/source-overlap": {
+      "post": {
+        "operationId": "source_overlap_api_v1_science_global_source_overlap_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Candidates"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Source Overlap",
+        "tags": [
+          "global-science"
+        ]
+      }
+    },
+    "/api/v1/science/global/tiles/{level}/{tile_id}": {
+      "get": {
+        "operationId": "tile_api_v1_science_global_tiles__level___tile_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "level",
+            "required": true,
+            "schema": {
+              "title": "Level",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "path",
+            "name": "tile_id",
+            "required": true,
+            "schema": {
+              "title": "Tile Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScienceError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Tile",
+        "tags": [
+          "global-science"
         ]
       }
     },
