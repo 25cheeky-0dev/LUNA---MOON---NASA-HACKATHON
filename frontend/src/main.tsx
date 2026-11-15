@@ -1,3 +1,4 @@
+import { JudgeMode } from './JudgeMode';
 import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { api, BASE, MOCK, type Cell, type Features, type Grid, type MissionRequest, type Outcome, type Recovery, type Scenario } from './lib/api';
@@ -115,4 +116,4 @@ function App() {
     <footer><span>WISPR / THE MOON AS A SEARCHABLE MEMORY</span><span>Reference regions. Declared assumptions. Traceable results.</span></footer></main></div>;
 }
 
-createRoot(document.getElementById('root')!).render(<React.StrictMode><GlobalExplorer/><App/></React.StrictMode>);
+createRoot(document.getElementById('root')!).render(<React.StrictMode>{location.hash==='#technical'?<><a className="judge-return" href="/">Open Judge Presentation Mode →</a><GlobalExplorer/><App/></>:<JudgeMode/>}</React.StrictMode>);
