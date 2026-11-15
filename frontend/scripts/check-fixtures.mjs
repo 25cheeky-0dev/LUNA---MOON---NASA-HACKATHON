@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { createServer } from 'vite';
 
-const server=await createServer({server:{middlewareMode:true},appType:'custom'});
+const server=await createServer({optimizeDeps:{noDiscovery:true,include:[]},server:{middlewareMode:true},appType:'custom'});
 try {
   const {fixture,fixtureFeatures,fixtureGrids}=await server.ssrLoadModule('/src/mocks/recovery.ts');
   const request={original_site_id:'R01',original_arrival_utc:'2026-11-20T00:00:00Z',study_duration_hours:24,delay_hours:168,min_continuous_overlap_minutes:180,candidate_site_ids:['R01','R04'],horizon_model:'GEOMETRIC',observer_height_m:1,step_minutes:5,future_search_days:1};

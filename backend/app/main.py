@@ -28,6 +28,8 @@ app.add_middleware(CORSMiddleware, allow_origins=os.getenv('CORS_ORIGINS','http:
 app.include_router(celestial_router)
 app.include_router(science_router)
 app.include_router(global_router)
+from app.judge import router as judge_router
+app.include_router(judge_router)
 provider = Horizons()
 scenarios = OrderedDict()
 requests_gate = asyncio.Semaphore(2)

@@ -1,0 +1,34 @@
+{
+  "latitude_deg": 0.0,
+  "longitude_east_deg": 0.0,
+  "altitude_km": 0.0,
+  "altitude_reference": "horizons_lunar_reference",
+  "start_utc": "2026-11-15T00:00:00Z",
+  "end_utc": "2026-11-22T00:00:00Z",
+  "step_minutes": 60,
+  "dataset_id": "SITE04_NW_ORIGIN_PRESERVED_2KM_100M__tiles_3.0.0",
+  "cell_ids": [
+    "SITE04_R000_C000",
+    "SITE04_R000_C001"
+  ],
+  "horizon_model": "GEOMETRIC_IDEAL",
+  "terrain_site_id": null,
+  "observer_height_m": 1.0,
+  "minimum_shared_minutes": 60.0,
+  "filters": {
+    "region": null,
+    "bbox": null,
+    "minimum_coverage": 1.0,
+    "qualities": [
+      "source_lola_count_and_uncertainty_not_supplied"
+    ],
+    "maximum_slope_deg": null,
+    "maximum_roughness_m": null,
+    "minimum_elevation_m": null,
+    "maximum_elevation_m": null,
+    "offset": 0,
+    "limit": 100
+  },
+  "original_cell_id": "SITE04_R000_C000",
+  "source_mode": "recorded"
+}

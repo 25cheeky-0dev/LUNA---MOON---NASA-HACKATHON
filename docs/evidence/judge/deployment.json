@@ -1,0 +1,18 @@
+{
+  "status": {
+    "latestReadyRevisionName": "nasa-lunar-00025-dup",
+    "traffic": [
+      {
+        "revisionName": "nasa-lunar-00014-taf",
+        "tag": "terrain-preview",
+        "url": "https://terrain-preview---nasa-lunar-x2her4ehyq-el.a.run.app"
+      },
+      {
+        "percent": 100,
+        "revisionName": "nasa-lunar-00025-dup",
+        "tag": "research-preview",
+        "url": "https://research-preview---nasa-lunar-x2her4ehyq-el.a.run.app"
+      }
+    ]
+  }
+}

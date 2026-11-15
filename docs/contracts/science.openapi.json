@@ -2555,6 +2555,199 @@
         "title": "JoinedObservation",
         "type": "object"
       },
+      "JudgeRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "altitude_km": {
+            "default": 0,
+            "maximum": 100.0,
+            "minimum": -10.0,
+            "title": "Altitude Km",
+            "type": "number"
+          },
+          "altitude_reference": {
+            "const": "horizons_lunar_reference",
+            "default": "horizons_lunar_reference",
+            "title": "Altitude Reference",
+            "type": "string"
+          },
+          "cell_ids": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 4,
+            "minItems": 1,
+            "title": "Cell Ids",
+            "type": "array"
+          },
+          "dataset_id": {
+            "title": "Dataset Id",
+            "type": "string"
+          },
+          "end_utc": {
+            "format": "date-time",
+            "title": "End Utc",
+            "type": "string"
+          },
+          "filters": {
+            "$ref": "#/components/schemas/Filters"
+          },
+          "horizon_model": {
+            "default": "GEOMETRIC_IDEAL",
+            "enum": [
+              "GEOMETRIC_IDEAL",
+              "TERRAIN_PARTIAL"
+            ],
+            "title": "Horizon Model",
+            "type": "string"
+          },
+          "latitude_deg": {
+            "default": 0,
+            "title": "Latitude Deg",
+            "type": "number"
+          },
+          "longitude_east_deg": {
+            "default": 0,
+            "title": "Longitude East Deg",
+            "type": "number"
+          },
+          "minimum_shared_minutes": {
+            "minimum": 0.0,
+            "title": "Minimum Shared Minutes",
+            "type": "number"
+          },
+          "observer_height_m": {
+            "default": 1,
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Observer Height M",
+            "type": "number"
+          },
+          "original_cell_id": {
+            "minLength": 1,
+            "title": "Original Cell Id",
+            "type": "string"
+          },
+          "source_mode": {
+            "default": "recorded",
+            "enum": [
+              "recorded",
+              "configured"
+            ],
+            "title": "Source Mode",
+            "type": "string"
+          },
+          "start_utc": {
+            "format": "date-time",
+            "title": "Start Utc",
+            "type": "string"
+          },
+          "step_minutes": {
+            "default": 60,
+            "maximum": 1440.0,
+            "minimum": 1.0,
+            "title": "Step Minutes",
+            "type": "integer"
+          },
+          "terrain_site_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Terrain Site Id"
+          }
+        },
+        "required": [
+          "start_utc",
+          "end_utc",
+          "dataset_id",
+          "cell_ids",
+          "minimum_shared_minutes",
+          "original_cell_id"
+        ],
+        "title": "JudgeRequest",
+        "type": "object"
+      },
+      "JudgeResult": {
+        "additionalProperties": false,
+        "properties": {
+          "delay_days": {
+            "const": 7,
+            "title": "Delay Days",
+            "type": "integer"
+          },
+          "delayed": {
+            "$ref": "#/components/schemas/CombinedResponse"
+          },
+          "evidence_id": {
+            "title": "Evidence Id",
+            "type": "string"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Limitations",
+            "type": "array"
+          },
+          "original": {
+            "$ref": "#/components/schemas/CombinedResponse"
+          },
+          "original_cell_id": {
+            "title": "Original Cell Id",
+            "type": "string"
+          },
+          "original_qualifying_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Original Qualifying Ids",
+            "type": "array"
+          },
+          "outcome": {
+            "enum": [
+              "KEEP",
+              "SWITCH",
+              "NO QUALIFYING MODELED OPTION",
+              "INSUFFICIENT DATA"
+            ],
+            "title": "Outcome",
+            "type": "string"
+          },
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          },
+          "selected": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RankedCell"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "outcome",
+          "selected",
+          "reason",
+          "original_cell_id",
+          "delay_days",
+          "original",
+          "delayed",
+          "original_qualifying_ids",
+          "limitations",
+          "evidence_id"
+        ],
+        "title": "JudgeResult",
+        "type": "object"
+      },
       "Metadata": {
         "additionalProperties": false,
         "properties": {
@@ -3348,6 +3541,21 @@
           "recommended_window"
         ],
         "title": "RecoveryResponse",
+        "type": "object"
+      },
+      "ReportRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "evidence_id": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Evidence Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "evidence_id"
+        ],
+        "title": "ReportRequest",
         "type": "object"
       },
       "Retrieval": {
@@ -5777,6 +5985,105 @@
           }
         },
         "summary": "Interpret Route"
+      }
+    },
+    "/api/v1/judge/dataset": {
+      "get": {
+        "operationId": "dataset_api_v1_judge_dataset_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Dataset",
+        "tags": [
+          "judge-presentation"
+        ]
+      }
+    },
+    "/api/v1/judge/evaluate": {
+      "post": {
+        "operationId": "evaluate_api_v1_judge_evaluate_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JudgeRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JudgeResult"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Evaluate",
+        "tags": [
+          "judge-presentation"
+        ]
+      }
+    },
+    "/api/v1/judge/report": {
+      "post": {
+        "operationId": "report_api_v1_judge_report_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReportRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Report",
+        "tags": [
+          "judge-presentation"
+        ]
       }
     },
     "/api/v1/recovery": {
