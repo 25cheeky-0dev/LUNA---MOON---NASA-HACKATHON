@@ -1,0 +1,10 @@
+..........................................................ss............ [ 32%]
+..................................................ss.................... [ 64%]
+........................................................................ [ 96%]
+........                                                                 [100%]
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_integration.py:284: MISSING DEPENDENCY: Narinder real V3 assets; synthetic tests are not real-data validation
+SKIPPED [1] tests\test_integration.py:300: Requires real V3 assets and WISPR_LIVE_TEST=1; no synthetic substitute
+SKIPPED [1] tests\test_terrain_horizon.py:321: Set WISPR_REAL_V3_DIR to frozen package
+SKIPPED [1] tests\test_terrain_horizon.py:367: Set WISPR_REAL_V3_DIR to frozen package
+220 passed, 4 skipped, 1 warning in 26.25s

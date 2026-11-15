@@ -1,0 +1,13 @@
+
+> wispr-frontend@0.1.0 build
+> tsc -b && vite build
+
+vite v6.4.6 building for production...
+transforming...
+✓ 34 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.55 kB │ gzip:  0.37 kB
+dist/assets/index-JJaL4wtA.css   17.40 kB │ gzip:  4.90 kB
+dist/assets/index-BhovlHB3.js   272.72 kB │ gzip: 86.42 kB
+✓ built in 1.74s
